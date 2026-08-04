@@ -40,8 +40,51 @@ def _fila(etiqueta: str, valor: str) -> str:
     )
 
 
+_ETIQ = {
+    "precio": {"ok": "Dentro del objetivo", "limite": "En el limite",
+               "caro": "Sobre el techo", "falta": "No publica precio"},
+    "rol": {"verificado": "Verificado en el SII", "declarado": "Declarado en el aviso",
+            "falta": "Falta preguntar", "sin_rol": "Sin rol propio"},
+    "agua": {"firme": "Derecho constituido", "obra": "Pozo declarado",
+             "vaga": "Sin respaldo DGA", "falta": "Falta preguntar",
+             "sin_agua": "Sin factibilidad"},
+}
+_TONO = {
+    "ok": ("#12703f", "#e6f5ec"), "limite": ("#8a5b00", "#fdf3de"),
+    "caro": ("#a02020", "#fdeceb"), "falta": ("#8a5b00", "#fdf3de"),
+    "verificado": ("#12703f", "#e6f5ec"), "declarado": ("#12703f", "#e6f5ec"),
+    "sin_rol": ("#a02020", "#fdeceb"), "firme": ("#12703f", "#e6f5ec"),
+    "obra": ("#12703f", "#e6f5ec"), "vaga": ("#8a5b00", "#fdf3de"),
+    "sin_agua": ("#a02020", "#fdeceb"),
+}
+
+
+def _criterios(p: dict) -> str:
+    """Los tres criterios duros, en una fila que se lee bien en el celular."""
+    if not p or "precio" not in p:
+        return ""
+    celdas = ""
+    for clave, nombre in (("precio", "Precio"), ("rol", "Rol"), ("agua", "Agua")):
+        d = p[clave]
+        color, fondo = _TONO.get(d["nivel"], ("#666", "#f4f4f4"))
+        celdas += (
+            f'<td width="33%" valign="top" style="padding:2px">'
+            f'<div style="background:{fondo};border-radius:7px;padding:9px 10px">'
+            f'<div style="font-size:9.5px;font-weight:700;letter-spacing:.09em;'
+            f'text-transform:uppercase;color:#7c8a83">{nombre} &middot; {d["puntos"]} pts</div>'
+            f'<div style="font-size:13px;font-weight:700;color:{color};margin-top:3px">'
+            f'{_ETIQ[clave].get(d["nivel"], d["nivel"])}</div></div></td>'
+        )
+    return (
+        '<table width="100%" cellpadding="0" cellspacing="0" style="margin:12px 0">'
+        f'<tr>{celdas}</tr></table>'
+    )
+
+
 def _tarjeta(f: dict, url_web: str) -> str:
     borde, fondo = COLOR.get(f.get("veredicto", ""), ("#555", "#f2f2f2"))
+    p = f.get("prioridad") or {}
+    indice = p.get("indice", 0)
     puntaje = f.get("puntaje", 0) or 0
     estrellas = "&#9733;" * int(puntaje) + "&#9734;" * (5 - int(puntaje))
 
@@ -83,23 +126,24 @@ def _tarjeta(f: dict, url_web: str) -> str:
   <div style="display:block;margin-bottom:10px">
     <span style="background:{fondo};color:{borde};padding:4px 10px;border-radius:20px;
                  font-size:12px;font-weight:700;letter-spacing:.3px">
-      {f.get('veredicto', 'sin veredicto').upper()}</span>
+      {indice} / 100</span>
     <span style="color:#c8901a;font-size:16px;margin-left:8px">{estrellas}</span>
     <span style="color:#888;font-size:12px">{puntaje}/5</span>
   </div>
   <div style="font-size:17px;font-weight:700;color:#111;margin-bottom:2px;line-height:1.3">
     {f.get('ubicacion_comuna', 'Ubicacion no especificada')}</div>
-  <div style="font-size:13px;color:#777;margin-bottom:12px">
+  <div style="font-size:13px;color:#777;margin-bottom:2px">
     {f.get('zona', '')} &middot; {f.get('fuente', '')}</div>
 
+  {_criterios(p)}
+
   <table style="width:100%;border-collapse:collapse">
-    {_fila('Superficie', f.get('superficie'))}
     {_fila('Precio', f"<b>{_clp(f.get('precio_clp'))}</b> &nbsp;<span style='color:#888;font-size:12px'>{f.get('precio_texto','')}</span>")}
+    {_fila('Superficie', f.get('superficie'))}
     {_fila('Forma de pago', f.get('forma_pago'))}
     {_fila('Rol SII', f.get('estado_rol'))}
     {_fila('Agua', f.get('agua'))}
     {_fila('Luz', f.get('luz'))}
-    {_fila('Publicado', f.get('fecha_publicacion'))}
   </table>
 
   <div style="margin-top:12px;padding:10px 12px;background:#fafafa;border-radius:4px;
@@ -118,9 +162,20 @@ def _tarjeta(f: dict, url_web: str) -> str:
 def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
     hoy = _fecha_larga(datetime.now())
 
-    cumplen = [f for f in nuevas if f.get("veredicto") == "Cumple"]
-    reservas = [f for f in nuevas if f.get("veredicto") == "Cumple con reservas"]
-    descartadas = [f for f in nuevas if f.get("veredicto") == "No cumple"]
+    # Mismo orden que la web: primero precio/rol/agua, la localidad desempata.
+    import prioridad
+
+    nuevas = sorted(nuevas, key=prioridad.clave_orden)
+
+    def _en_zona(f):
+        return f.get("zona") and f.get("zona") != "Fuera de zona"
+
+    cumplen = [f for f in nuevas if (f.get("prioridad") or {}).get("cumple_tres")]
+    reservas = [f for f in nuevas
+                if f not in cumplen and _en_zona(f)
+                and (f.get("prioridad") or {}).get("respondidos", 0) == 2]
+    sin_datos = [f for f in nuevas if f not in cumplen and f not in reservas and _en_zona(f)]
+    descartadas = [f for f in nuevas if not _en_zona(f)]
 
     if not nuevas:
         cuerpo = (
@@ -133,22 +188,30 @@ def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
         )
     else:
         cuerpo = ""
-        for titulo, grupo, color in [
-            ("Cumplen los criterios", cumplen, "#0f7b3d"),
-            ("Cumplen con reservas", reservas, "#9a6700"),
-            ("Revisadas y descartadas", descartadas, "#8b1a1a"),
+        for titulo, pista, grupo, color in [
+            ("Responden precio, rol y agua",
+             "Los tres criterios duros estan contestados. Aqui parte la conversacion.",
+             cumplen, "#0f7b3d"),
+            ("Les falta confirmar un criterio",
+             "Fallan en un solo dato, casi siempre el agua o el precio. Una llamada las puede subir.",
+             reservas, "#9a6700"),
+            ("Sin datos suficientes",
+             "El aviso no publica lo necesario. Sirven como referencia de precio de la zona.",
+             sin_datos, "#6b6b68"),
+            ("Fuera de zona",
+             "Registradas para no volver a analizarlas.",
+             descartadas, "#8b1a1a"),
         ]:
             if not grupo:
                 continue
             cuerpo += (
+                f'<div style="margin:26px 0 12px">'
                 f'<div style="font-size:14px;font-weight:700;color:{color};'
-                'text-transform:uppercase;letter-spacing:.5px;margin:24px 0 12px">'
+                'text-transform:uppercase;letter-spacing:.5px">'
                 f'{titulo} ({len(grupo)})</div>'
+                f'<div style="font-size:12.5px;color:#888;margin-top:3px">{pista}</div></div>'
             )
-            cuerpo += "".join(
-                _tarjeta(f, url_web)
-                for f in sorted(grupo, key=lambda x: x.get("puntaje", 0), reverse=True)
-            )
+            cuerpo += "".join(_tarjeta(f, url_web) for f in grupo)
 
     avisos_errores = ""
     if resumen.get("errores"):

@@ -101,6 +101,41 @@ Por si alguna vez hay que rehacerlo desde cero o moverlo a otra cuenta:
 
 ---
 
+## Cómo se ordenan las parcelas
+
+Lo que manda es **precio, rol y agua**. La localidad es el segundo criterio: desempata, no decide.
+
+Los tres criterios duros suman 100 puntos:
+
+| Criterio | Situación | Puntos |
+|---|---|---|
+| **Precio** (40) | Hasta $10.000.000 | 40 |
+| | Entre $10 y $14 millones | 40 → 20 |
+| | No publica precio | 4 |
+| | Sobre $14.000.000 | 0 |
+| **Rol** (30) | Verificado en el SII | 30 |
+| | Rol propio declarado en el aviso | 22–24 |
+| | Dato faltante | 3 |
+| | Sin rol propio | 0 |
+| **Agua** (30) | Derecho constituido en la DGA o red | 30 |
+| | Pozo declarado | 26 |
+| | Vertiente o "factibilidad hídrica" | 18 |
+| | Dato faltante | 2 |
+| | Sin factibilidad | 0 |
+
+Un dato faltante suma casi cero, y es a propósito: un aviso con buen precio que no dice
+nada del rol ni del agua no es mejor que uno con rol y agua resueltos.
+
+El listado se agrupa por cuántos de los tres criterios responde el aviso —los tres, dos,
+o menos— así se entiende el orden sin mirar el puntaje.
+
+La localidad se ordena por conectividad y servicios, que es lo que sostiene la plusvalía:
+Ancud, Castro, Las Trancas, Recinto y Pinto arriba; Dalcahue, Chonchi, Quellón, San Fabián
+y Coihueco al medio; Quemchi, Curaco de Vélez y Puqueldón abajo. Es un juicio explícito y
+editable en `prioridad.py → LOCALIDADES`, no un dato objetivo.
+
+---
+
 ## Avisos de Instagram y Facebook
 
 Esta es la parte que reemplaza al scraping imposible, y funciona bien porque el trabajo
@@ -201,11 +236,13 @@ filtro.py       Prefiltro barato: detecta zona y precio sin gastar API.
 fuentes.py      Portalinmobiliario, Yapo, valor de la UF, ingesta por correo (IMAP).
 evaluador.py    Llama a Claude con los criterios y devuelve la ficha estructurada.
 almacen.py      Historial en site/data.json (+ data.js). Detecta cambios de precio.
+prioridad.py    Clasifica precio/rol/agua y calcula el índice de 0 a 100.
 correo.py       Arma y envía el correo HTML.
 main.py         Orquesta la corrida diaria.
 semilla_whatsapp.py  Carga inicial: los 31 avisos que mandó Marcelo por WhatsApp, evaluados.
 semilla.py           Los tres primeros avisos (subconjunto del anterior).
 fixtures.py          Datos de prueba para correr sin red ni API.
+migrar.py            Recalcula la prioridad de todo el historial si cambian los pesos.
 site/index.html      La web: filtros, comparación por zona y calculadora.
 .github/workflows/   diario.yml (informe 8 AM) y publicar.yml (web en cada push a site/).
 ```

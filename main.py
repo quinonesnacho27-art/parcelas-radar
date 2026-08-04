@@ -26,6 +26,7 @@ import config
 import correo
 import filtro
 import fuentes
+import prioridad
 from evaluador import evaluar
 
 logging.basicConfig(
@@ -131,8 +132,16 @@ def main() -> int:
                 errores.append(f"Evaluacion fallida ({a.get('url','?')[:50]}): {ficha['_error']}")
             fichas.append(ficha)
 
-    # --- 6. Guardar ----------------------------------------------------------
+    # --- 6. Prioridad y guardado ---------------------------------------------
+    # El orden lo manda precio/rol/agua; la localidad solo desempata.
+    for f in fichas:
+        prioridad.calcular(f)
+
     nuevas = almacen.agregar(datos, fichas)
+    for f in datos["avisos"]:
+        if "prioridad" not in f:
+            prioridad.calcular(f)
+    datos["avisos"].sort(key=prioridad.clave_orden)
     resumen = {
         "fecha": inicio.isoformat(timespec="seconds"),
         "revisados": len(crudos),
@@ -160,9 +169,9 @@ def main() -> int:
         return 0
 
     n = len(nuevas)
-    mejores = [f for f in nuevas if f.get("veredicto") == "Cumple"]
+    mejores = [f for f in nuevas if (f.get("prioridad") or {}).get("cumple_tres")]
     if mejores:
-        asunto = f"{config.ASUNTO_BASE}: {len(mejores)} oportunidad{'es' if len(mejores) != 1 else ''} que cumple{'n' if len(mejores) != 1 else ''} - {inicio:%d/%m}"
+        asunto = f"{config.ASUNTO_BASE}: {len(mejores)} con precio, rol y agua - {inicio:%d/%m}"
     elif n:
         asunto = f"{config.ASUNTO_BASE}: {n} aviso{'s' if n != 1 else ''} nuevo{'s' if n != 1 else ''} - {inicio:%d/%m}"
     else:
