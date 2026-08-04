@@ -34,59 +34,70 @@ costos vs. rentabilidad, que se abre igual desde el celular o el computador.
 
 ---
 
-## Instalación (una sola vez, ~20 minutos)
+## Estado actual
 
-### 1. Subir el proyecto a GitHub
+La web ya está publicada y funcionando:
+**https://quinonesnacho27-art.github.io/parcelas-radar/**
 
-Crea un repositorio nuevo llamado `parcelas-radar` y sube esta carpeta completa.
-Puede ser público o privado; si es privado, GitHub Pages requiere cuenta de pago, así que
-para la web conviene público (no hay nada sensible: las claves van en Secrets, nunca en el código).
+Ya está hecho: el repositorio, el código, los dos workflows, GitHub Pages activado, la
+variable `URL_WEB`, el secret `GMAIL_USER` y la carga inicial de 31 avisos evaluados.
 
-### 2. Conseguir la clave de la API de Claude
+**Falta solo un paso, y tiene que hacerlo Nacho** porque son credenciales: cargar dos
+secrets. Sin ellos la web funciona igual, pero el correo diario no sale.
 
-Entra a [console.anthropic.com](https://console.anthropic.com) → **API Keys** → crear una nueva.
-Cárgale saldo. El consumo esperado es de unos pocos dólares al mes: el prefiltro descarta
-la mayoría de los avisos antes de llamar al modelo, y hay un tope de 25 evaluaciones por corrida.
+---
 
-### 3. Crear la contraseña de aplicación de Gmail
+## El paso que falta (5 minutos)
 
-GitHub necesita poder enviar el correo. Tu contraseña normal de Gmail no sirve para esto
-y **nunca** debe ir en el código:
+### 1. Clave de la API de Claude
 
-1. La cuenta de Gmail que enviará los correos necesita la verificación en dos pasos activada.
+[console.anthropic.com](https://console.anthropic.com) → **API Keys** → crear una nueva y
+cargarle saldo. El consumo esperado es de unos pocos dólares al mes: el prefiltro descarta
+la mayoría de los avisos antes de llamar al modelo y hay un tope de 25 evaluaciones por corrida.
+
+### 2. Contraseña de aplicación de Gmail
+
+Tu contraseña normal de Gmail no sirve para esto y **nunca** debe ir en el código:
+
+1. La cuenta necesita la verificación en dos pasos activada.
 2. Anda a [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
-3. Crea una contraseña de aplicación, nómbrala "Parcelas Radar".
+3. Crea una contraseña de aplicación y nómbrala "Parcelas Radar".
 4. Google te muestra 16 caracteres. Cópialos: solo se ven una vez.
 
-Esa contraseña sirve únicamente para enviar correo por SMTP y la puedes revocar cuando
-quieras desde la misma página.
+Sirve únicamente para enviar correo por SMTP y la puedes revocar cuando quieras desde esa
+misma página.
 
-### 4. Cargar los secretos en GitHub
+### 3. Cargar los dos secrets
 
-En el repositorio: **Settings → Secrets and variables → Actions → New repository secret**.
-
-| Nombre | Valor |
-|---|---|
-| `ANTHROPIC_API_KEY` | la clave del paso 2 |
-| `GMAIL_USER` | la dirección de Gmail que envía (ej. `quinonesnacho27@gmail.com`) |
-| `GMAIL_APP_PASSWORD` | los 16 caracteres del paso 3 |
-
-En la pestaña **Variables** de esa misma página, agrega:
+En [Settings → Secrets and variables → Actions](https://github.com/quinonesnacho27-art/parcelas-radar/settings/secrets/actions)
+→ **New repository secret**:
 
 | Nombre | Valor |
 |---|---|
-| `URL_WEB` | `https://TU-USUARIO.github.io/parcelas-radar/` |
+| `ANTHROPIC_API_KEY` | la clave del paso 1 |
+| `GMAIL_APP_PASSWORD` | los 16 caracteres del paso 2 |
 
-### 5. Activar GitHub Pages
+### 4. Probarlo
 
-**Settings → Pages → Source: GitHub Actions.** Eso es todo; el workflow publica solo.
+[Actions → Informe diario de parcelas → Run workflow](https://github.com/quinonesnacho27-art/parcelas-radar/actions/workflows/diario.yml).
+En dos o tres minutos debería llegar el correo a jmqs2007@gmail.com. Si algo falla, el log
+del workflow dice exactamente qué: no falla en silencio.
 
-### 6. Probarlo
+---
 
-**Actions → Informe diario de parcelas → Run workflow.**
+## Referencia: cómo se armó
 
-En dos o tres minutos debería llegar el correo. Si algo falla, el log del workflow dice
-exactamente qué: no falla en silencio.
+Por si alguna vez hay que rehacerlo desde cero o moverlo a otra cuenta:
+
+1. Repositorio público en GitHub (público porque GitHub Pages gratis lo requiere; no hay
+   nada sensible adentro — las claves viven en Secrets, nunca en el código).
+2. **Settings → Pages → Source: GitHub Actions.**
+3. **Settings → Secrets and variables → Actions**, pestaña *Variables*: `URL_WEB` con la
+   URL de la web. Pestaña *Secrets*: `GMAIL_USER`, `GMAIL_APP_PASSWORD` y `ANTHROPIC_API_KEY`.
+4. Dos workflows separados a propósito: `publicar.yml` sube la web en cada push a `site/`,
+   y `diario.yml` corre el informe a las 8 AM. Van separados para que la web siga
+   disponible aunque la corrida diaria falle.
+5. `python semilla_whatsapp.py` para cargar el historial inicial.
 
 ---
 
@@ -192,9 +203,11 @@ evaluador.py    Llama a Claude con los criterios y devuelve la ficha estructurad
 almacen.py      Historial en site/data.json (+ data.js). Detecta cambios de precio.
 correo.py       Arma y envía el correo HTML.
 main.py         Orquesta la corrida diaria.
-semilla.py      Carga inicial: los avisos que mandó Marcelo por WhatsApp.
-fixtures.py     Los mismos avisos, como datos de prueba.
-site/index.html La web: filtros, comparación por zona y calculadora.
+semilla_whatsapp.py  Carga inicial: los 31 avisos que mandó Marcelo por WhatsApp, evaluados.
+semilla.py           Los tres primeros avisos (subconjunto del anterior).
+fixtures.py          Datos de prueba para correr sin red ni API.
+site/index.html      La web: filtros, comparación por zona y calculadora.
+.github/workflows/   diario.yml (informe 8 AM) y publicar.yml (web en cada push a site/).
 ```
 
 ---
