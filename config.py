@@ -125,12 +125,34 @@ DESTINATARIOS = ["jmqs2007@gmail.com"]
 REMITENTE_NOMBRE = "Parcelas Radar"
 ASUNTO_BASE = "Parcelas Radar"
 
-# Etiqueta/carpeta de Gmail donde caen los avisos reenviados manualmente
-# (Instagram, Facebook Marketplace, o cualquier link que mande el papa).
+# ---------------------------------------------------------------------------
+# CASILLA PARA LOS AVISOS QUE MANDA EL PAPA
+# ---------------------------------------------------------------------------
+# Se usa el alias con "+" de Gmail: todo lo que llegue a
+# quinonesnacho27+parcelas@gmail.com aterriza igual en la bandeja normal, pero el
+# sistema lo reconoce por el destinatario. No hace falta crear filtros ni etiquetas:
+# funciona desde el primer correo.
+CORREO_INGESTA = "quinonesnacho27+parcelas@gmail.com"
+
+# Cuantos dias hacia atras se revisan los correos en cada corrida. Con 3 dias hay
+# margen de sobra si el job no corre un dia.
+DIAS_INGESTA_CORREO = 3
+
+# Etiqueta opcional. Si existe en Gmail tambien se lee; si no existe no pasa nada.
 IMAP_CARPETA_INGESTA = "ParcelasRadar"
 
-# Cuantos avisos como maximo se evaluan con la API por corrida (control de costo)
+# ---------------------------------------------------------------------------
+# MOTOR DE EVALUACION
+# ---------------------------------------------------------------------------
+#   "reglas"     sin API, sin clave, sin costo, sin limite. Es el que viene puesto.
+#   "gemini"     capa gratuita de Google AI Studio (necesita GEMINI_API_KEY).
+#   "anthropic"  API de pago de Claude (necesita ANTHROPIC_API_KEY).
+# Si el motor elegido falla, el sistema cae solo a "reglas" y sigue funcionando.
+MOTOR_EVALUACION = "reglas"
+
+# Cuantos avisos como maximo se evaluan por corrida. Con el motor de reglas no
+# hay costo, pero el tope evita informes interminables.
 MAX_EVALUACIONES_POR_CORRIDA = 25
 
-# Modelo de Claude usado para evaluar
+# Modelo de Claude, si se usa el motor "anthropic"
 MODELO = "claude-sonnet-5"

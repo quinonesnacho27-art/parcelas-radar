@@ -186,88 +186,139 @@ def buscar_yapo(query: str, max_resultados: int = 30) -> list[dict]:
 # Ingesta por correo: Instagram, Facebook Marketplace y reenvios del papa
 # ---------------------------------------------------------------------------
 
-def buscar_correo(carpeta: str, usuario: str, password: str, dias: int = 3) -> list[dict]:
-    """
-    Lee los correos reenviados a una etiqueta de Gmail y los convierte en avisos.
+def _cuerpo_texto(msg) -> str:
+    """Saca el texto del correo. Prefiere text/plain; si solo hay HTML, lo desarma."""
+    plano, html = "", ""
+    if msg.is_multipart():
+        for parte in msg.walk():
+            if parte.get_content_disposition() == "attachment":
+                continue
+            tipo = parte.get_content_type()
+            if tipo not in ("text/plain", "text/html"):
+                continue
+            try:
+                trozo = parte.get_payload(decode=True).decode(
+                    parte.get_content_charset() or "utf-8", "replace")
+            except Exception:  # noqa: BLE001
+                continue
+            if tipo == "text/plain":
+                plano += trozo
+            else:
+                html += trozo
+    else:
+        try:
+            crudo = msg.get_payload(decode=True).decode(
+                msg.get_content_charset() or "utf-8", "replace")
+        except Exception:  # noqa: BLE001
+            crudo = str(msg.get_payload())
+        (plano := crudo) if msg.get_content_type() == "text/plain" else (html := crudo)
 
-    Esta es la via oficial para Instagram y Facebook Marketplace: Meta no ofrece
-    API publica de avisos y el scraping viola sus terminos, asi que el aviso entra
-    por reenvio humano y el sistema lo evalua igual que cualquier otro.
+    if plano.strip():
+        return plano
+    if html.strip():
+        # Los links quedan visibles antes de borrar las etiquetas, para no perderlos
+        html = re.sub(r'<a[^>]+href="([^"]+)"[^>]*>', r" \1 ", html, flags=re.I)
+        return BeautifulSoup(html, "lxml").get_text(" ")
+    return ""
+
+
+_DOMINIOS_AVISO = ("instagram.com", "facebook.com", "fb.watch", "portalinmobiliario",
+                   "yapo.cl", "mercadolibre", "toctoc", "parcela", "terreno")
+
+
+def buscar_correo(usuario: str, password: str, destino: str,
+                  carpeta: str | None = None, dias: int = 3) -> list[dict]:
+    """
+    Lee los avisos que llegan por correo y los convierte en fichas evaluables.
+
+    Esta es la via para Instagram y Facebook Marketplace: Meta no ofrece API
+    publica de avisos y el scraping viola sus terminos, asi que el aviso entra
+    por reenvio humano y de ahi en adelante se evalua igual que cualquier otro.
+
+    Busca por destinatario (el alias con "+" de Gmail) para no depender de que
+    el usuario configure filtros ni etiquetas. Si ademas existe la etiqueta
+    indicada, tambien la revisa.
     """
     import email
     import imaplib
     from email.header import decode_header, make_header
+    from email.utils import parseaddr
 
     avisos: list[dict] = []
+    vistos: set[str] = set()
+
     try:
         M = imaplib.IMAP4_SSL("imap.gmail.com")
         M.login(usuario, password)
-        estado, _ = M.select(f'"{carpeta}"', readonly=True)
-        if estado != "OK":
-            log.warning("No existe la carpeta/etiqueta IMAP '%s'", carpeta)
-            M.logout()
-            return []
 
-        desde = (datetime.now().date().toordinal() - dias)
-        fecha_imap = date.fromordinal(desde).strftime("%d-%b-%Y")
-        estado, datos = M.search(None, f'(SINCE "{fecha_imap}")')
-        ids = datos[0].split() if estado == "OK" else []
+        desde = date.fromordinal(datetime.now().date().toordinal() - dias)
+        fecha_imap = desde.strftime("%d-%b-%Y")
 
-        for num in ids[-50:]:
-            estado, datos = M.fetch(num, "(RFC822)")
+        # 1) Todo lo dirigido al alias, en cualquier carpeta.
+        # 2) Ademas la etiqueta dedicada, si el usuario la creo.
+        busquedas = [("[Gmail]/All Mail", f'(SINCE "{fecha_imap}" TO "{destino}")'),
+                     ("INBOX", f'(SINCE "{fecha_imap}" TO "{destino}")')]
+        if carpeta:
+            busquedas.append((carpeta, f'(SINCE "{fecha_imap}")'))
+
+        for buzon, criterio in busquedas:
+            estado, _ = M.select(f'"{buzon}"', readonly=True)
             if estado != "OK":
                 continue
-            msg = email.message_from_bytes(datos[0][1])
-            asunto = str(make_header(decode_header(msg.get("Subject", ""))))
-            remitente = str(make_header(decode_header(msg.get("From", ""))))
-            fecha = msg.get("Date", "")
+            estado, datos = M.search(None, criterio)
+            if estado != "OK":
+                continue
 
-            cuerpo = ""
-            if msg.is_multipart():
-                for parte in msg.walk():
-                    if parte.get_content_type() == "text/plain":
-                        try:
-                            cuerpo += parte.get_payload(decode=True).decode(
-                                parte.get_content_charset() or "utf-8", "replace"
-                            )
-                        except Exception:  # noqa: BLE001
-                            pass
-            else:
-                try:
-                    cuerpo = msg.get_payload(decode=True).decode(
-                        msg.get_content_charset() or "utf-8", "replace"
-                    )
-                except Exception:  # noqa: BLE001
-                    cuerpo = str(msg.get_payload())
+            for num in (datos[0].split() or [])[-60:]:
+                estado, bruto = M.fetch(num, "(RFC822)")
+                if estado != "OK" or not bruto or not bruto[0]:
+                    continue
+                msg = email.message_from_bytes(bruto[0][1])
 
-            urls = re.findall(r"https?://[^\s<>\"')]+", cuerpo)
-            url_principal = next(
-                (u for u in urls if any(d in u for d in
-                 ("instagram.com", "facebook.com", "portalinmobiliario", "yapo.cl", "mercadolibre"))),
-                urls[0] if urls else "",
-            )
-            origen = "Instagram" if "instagram.com" in url_principal else (
-                "Facebook Marketplace" if "facebook.com" in url_principal else "Reenvio por correo"
-            )
+                mid = msg.get("Message-ID", "") or str(num)
+                if mid in vistos:
+                    continue
+                vistos.add(mid)
 
-            avisos.append({
-                "id": _id(url_principal or (asunto + fecha)),
-                "fuente": origen,
-                "url": url_principal,
-                "titulo": _limpiar(asunto)[:200],
-                "descripcion": _limpiar(cuerpo)[:6000],
-                "precio_texto": "",
-                "ubicacion": "",
-                "fecha": fecha[:31],
-                "remitente": remitente,
-            })
+                asunto = str(make_header(decode_header(msg.get("Subject", ""))))
+                remitente = parseaddr(str(make_header(decode_header(msg.get("From", "")))))[1]
+                fecha = msg.get("Date", "")
+                cuerpo = _cuerpo_texto(msg)
 
-        M.close()
+                urls = re.findall(r"https?://[^\s<>\"')\]]+", cuerpo)
+                url = next((u for u in urls if any(d in u.lower() for d in _DOMINIOS_AVISO)),
+                           urls[0] if urls else "")
+
+                # Sin link y sin texto util no hay nada que evaluar
+                if not url and len(_limpiar(cuerpo)) < 40:
+                    continue
+
+                u = url.lower()
+                origen = ("Instagram" if "instagram.com" in u else
+                          "Facebook Marketplace" if ("facebook.com" in u or "fb.watch" in u) else
+                          "Portalinmobiliario" if "portalinmobiliario" in u else
+                          "Yapo" if "yapo.cl" in u else
+                          "Reenvio por correo")
+
+                texto = _limpiar(f"{asunto} {cuerpo}")
+                avisos.append({
+                    "id": _id(url or (asunto + fecha)),
+                    "fuente": f"{origen} (enviado por correo)",
+                    "url": url,
+                    "titulo": _limpiar(asunto)[:200] or texto[:120],
+                    "descripcion": texto[:6000],
+                    "precio_texto": "",
+                    "ubicacion": "",
+                    "fecha": fecha[:31] or date.today().isoformat(),
+                    "remitente": remitente,
+                })
+            M.close()
+
         M.logout()
     except Exception as e:  # noqa: BLE001
         log.warning("Ingesta por correo fallo: %s: %s", type(e).__name__, e)
 
-    log.info("Correo '%s': %d avisos", carpeta, len(avisos))
+    log.info("Correo (%s): %d avisos", destino, len(avisos))
     return avisos
 
 

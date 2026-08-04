@@ -14,11 +14,13 @@ costos vs. rentabilidad, que se abre igual desde el celular o el computador.
 **Sí hace, solo y sin intervención:**
 
 - Revisa Portalinmobiliario y Yapo todos los días a las 8 AM.
-- Filtra por zona y precio *antes* de gastar dinero en la API (así el costo se mantiene bajo).
-- Evalúa cada aviso con Claude usando exactamente los criterios del proyecto: uso de
-  inversión, precio, pago al contado, rol propio del SII, agua obligatoria, luz deseable.
+- Lee además los avisos que el papá manda por correo (Instagram, Facebook, lo que sea).
+- Evalúa cada aviso contra los criterios del proyecto: uso de inversión, precio, pago al
+  contado, rol propio del SII, agua obligatoria, luz deseable.
+- Ordena por **precio, rol y agua**; la localidad solo desempata.
 - Guarda el historial para poder comparar precios de la misma zona en el tiempo.
 - Manda el correo y actualiza la web.
+- **Todo esto sin costo y sin ninguna API key.**
 
 **No hace, y es importante que lo sepas:**
 
@@ -31,57 +33,63 @@ costos vs. rentabilidad, que se abre igual desde el celular o el computador.
 - **No verifica nada en el SII, el CBR ni la DGA.** Lee lo que dice el aviso. Si el aviso
   miente, el sistema repite la mentira — por eso cada ficha incluye una lista explícita de
   qué hay que preguntarle al vendedor.
+- **No entiende avisos escritos de forma rara.** El motor de reglas reconoce las fórmulas
+  habituales del rubro ("rol propio", "agua de pozo", "al contado"). Si un aviso lo dice de
+  otra manera, el dato queda en "falta preguntar" en vez de inventarse.
 
 ---
 
 ## Estado actual
 
-La web ya está publicada y funcionando:
+La web está publicada y funcionando:
 **https://quinonesnacho27-art.github.io/parcelas-radar/**
 
-Ya está hecho: el repositorio, el código, los dos workflows, GitHub Pages activado, la
-variable `URL_WEB`, el secret `GMAIL_USER` y la carga inicial de 31 avisos evaluados.
+**No necesita ninguna API key.** La evaluación corre con un motor de reglas propio
+(`evaluador_reglas.py`) que lee los seis datos del aviso —superficie, precio, forma de pago,
+rol, agua, luz— y detecta las señales de riesgo del rubro. Sin claves, sin cuotas, sin costo.
 
-**Falta solo un paso, y tiene que hacerlo Nacho** porque son credenciales: cargar dos
-secrets. Sin ellos la web funciona igual, pero el correo diario no sale.
+Ya está hecho: repositorio, código, los dos workflows, GitHub Pages, la variable `URL_WEB`,
+el secret `GMAIL_USER`, la casilla de ingesta por correo y 31 avisos evaluados.
 
 ---
 
-## El paso que falta (5 minutos)
+## Lo único que falta: una credencial
 
-### 1. Clave de la API de Claude
+Solo hace falta **una** contraseña, y sirve para las dos cosas de correo: enviar el informe
+diario y leer los avisos que manda el papá.
 
-[console.anthropic.com](https://console.anthropic.com) → **API Keys** → crear una nueva y
-cargarle saldo. El consumo esperado es de unos pocos dólares al mes: el prefiltro descarta
-la mayoría de los avisos antes de llamar al modelo y hay un tope de 25 evaluaciones por corrida.
+1. La cuenta `quinonesnacho27@gmail.com` necesita la verificación en dos pasos activada.
+2. Entrar a [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
+3. Crear una contraseña de aplicación, nombrarla "Parcelas Radar". Google muestra 16
+   caracteres: solo se ven una vez.
+4. Pegarla en [Settings → Secrets → New repository secret](https://github.com/quinonesnacho27-art/parcelas-radar/settings/secrets/actions/new)
+   con el nombre exacto **`GMAIL_APP_PASSWORD`**.
 
-### 2. Contraseña de aplicación de Gmail
+GitHub la guarda cifrada y nunca vuelve a mostrarla, ni siquiera al dueño del repositorio.
+Se puede revocar en cualquier momento desde la misma página de Google, sin tocar la cuenta.
 
-Tu contraseña normal de Gmail no sirve para esto y **nunca** debe ir en el código:
+Después: [Actions → Informe diario → Run workflow](https://github.com/quinonesnacho27-art/parcelas-radar/actions/workflows/diario.yml).
+En dos minutos llega el correo a jmqs2007@gmail.com.
 
-1. La cuenta necesita la verificación en dos pasos activada.
-2. Anda a [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords).
-3. Crea una contraseña de aplicación y nómbrala "Parcelas Radar".
-4. Google te muestra 16 caracteres. Cópialos: solo se ven una vez.
+---
 
-Sirve únicamente para enviar correo por SMTP y la puedes revocar cuando quieras desde esa
-misma página.
+## Motores de evaluación
 
-### 3. Cargar los dos secrets
+Se cambia con la variable de repositorio `MOTOR` (Settings → Variables), sin tocar código.
 
-En [Settings → Secrets and variables → Actions](https://github.com/quinonesnacho27-art/parcelas-radar/settings/secrets/actions)
-→ **New repository secret**:
+| Motor | Costo | Clave | Qué aporta |
+|---|---|---|---|
+| **`reglas`** (por defecto) | Gratis, sin límite | ninguna | Extrae los seis datos y genera advertencias y preguntas |
+| `gemini` | Gratis, 1.500/día | `GEMINI_API_KEY` | Redacción más natural en la justificación |
+| `anthropic` | Unos dólares al mes | `ANTHROPIC_API_KEY` | La mejor redacción |
 
-| Nombre | Valor |
-|---|---|
-| `ANTHROPIC_API_KEY` | la clave del paso 1 |
-| `GMAIL_APP_PASSWORD` | los 16 caracteres del paso 2 |
+La clave de Gemini se saca en [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+sin tarjeta de crédito. Ten en cuenta que Google indica que los prompts de la capa gratuita
+pueden usarse para mejorar sus productos; acá solo se envían avisos públicos de parcelas,
+así que el riesgo es bajo, pero es un dato que conviene saber.
 
-### 4. Probarlo
-
-[Actions → Informe diario de parcelas → Run workflow](https://github.com/quinonesnacho27-art/parcelas-radar/actions/workflows/diario.yml).
-En dos o tres minutos debería llegar el correo a jmqs2007@gmail.com. Si algo falla, el log
-del workflow dice exactamente qué: no falla en silencio.
+Si el motor elegido falla —sin clave, sin cuota, sin red— el sistema cae solo a `reglas` y
+la corrida diaria no se pierde.
 
 ---
 
@@ -138,20 +146,22 @@ editable en `prioridad.py → LOCALIDADES`, no un dato objetivo.
 
 ## Avisos de Instagram y Facebook
 
-Esta es la parte que reemplaza al scraping imposible, y funciona bien porque el trabajo
-humano se reduce a reenviar un mensaje.
+Meta no ofrece API pública de avisos y raspar sus páginas viola sus términos, así que esos
+dos entran por correo. **No hay que configurar filtros ni etiquetas:** funciona desde el
+primer mensaje, usando el alias con `+` de Gmail.
 
-**Configuración (una vez):** en Gmail, crea la etiqueta `ParcelasRadar`. Después crea un
-filtro (**Configuración → Filtros → Crear un filtro**) que aplique esa etiqueta
-automáticamente a los correos que lleguen desde tu papá, o que tengan cierta palabra en
-el asunto — lo que te acomode más.
+**Tu papá:** en el aviso toca *Compartir → Correo* y lo manda a
 
-**Uso diario:** cuando tu papá vea una parcela en Instagram o Marketplace, toca *Compartir
-→ Correo* y la manda. A la mañana siguiente aparece evaluada en el informe, junto a las
-demás, con su puntaje y sus advertencias.
+> **quinonesnacho27+parcelas@gmail.com**
 
-El sistema reconoce solo el link y lo clasifica como Instagram, Facebook Marketplace o
-reenvío genérico, así que sabes de dónde salió cada ficha.
+Todo lo que llegue a esa dirección aterriza igual en la bandeja normal de
+`quinonesnacho27@gmail.com`, pero el sistema lo reconoce por el destinatario y lo procesa.
+
+A la mañana siguiente el aviso aparece en el informe y en la web, con su índice, sus
+advertencias y las preguntas para el vendedor — igual que los que vienen de los portales.
+
+Mientras más texto del aviso venga en el correo, mejor la ficha. Si va solo el link, se
+registra igual pero con casi todo en "falta preguntar".
 
 ---
 
@@ -234,9 +244,12 @@ guarda además en `data.js` para ese caso.
 config.py       Criterios, zonas, precios, búsquedas. Lo único que se edita seguido.
 filtro.py       Prefiltro barato: detecta zona y precio sin gastar API.
 fuentes.py      Portalinmobiliario, Yapo, valor de la UF, ingesta por correo (IMAP).
-evaluador.py    Llama a Claude con los criterios y devuelve la ficha estructurada.
 almacen.py      Historial en site/data.json (+ data.js). Detecta cambios de precio.
 prioridad.py    Clasifica precio/rol/agua y calcula el índice de 0 a 100.
+motor.py        Elige el evaluador y cae a reglas si el elegido falla.
+evaluador_reglas.py  Evaluador sin API. Es el que corre por defecto.
+evaluador_gemini.py  Evaluador con la capa gratuita de Google AI Studio.
+evaluador.py    Evaluador con la API de pago de Claude.
 correo.py       Arma y envía el correo HTML.
 main.py         Orquesta la corrida diaria.
 semilla_whatsapp.py  Carga inicial: los 31 avisos que mandó Marcelo por WhatsApp, evaluados.

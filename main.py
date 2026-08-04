@@ -26,8 +26,9 @@ import config
 import correo
 import filtro
 import fuentes
+import motor
 import prioridad
-from evaluador import evaluar
+from motor import evaluar
 
 logging.basicConfig(
     level=logging.INFO,
@@ -42,12 +43,18 @@ URL_WEB = os.environ.get("URL_WEB", "https://TU-USUARIO.github.io/parcelas-radar
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--dry-run", action="store_true", help="no envia el correo")
-    p.add_argument("--sin-api", action="store_true", help="no llama a la API de Claude")
+    p.add_argument("--sin-api", action="store_true",
+                   help="atajo para --motor reglas (ya es el valor por defecto)")
     p.add_argument("--demo", action="store_true", help="usa avisos de ejemplo")
+    p.add_argument("--motor", help="reglas | gemini | anthropic (por defecto: config.py)")
     args = p.parse_args()
+
+    if args.motor:
+        motor.MOTOR = args.motor.lower()
 
     inicio = datetime.now()
     errores: list[str] = []
+    log.info("Motor de evaluacion: %s", motor._elegido())
 
     # --- 1. Valor de la UF ---------------------------------------------------
     uf, uf_real = fuentes.valor_uf()
@@ -63,12 +70,16 @@ def main() -> int:
         crudos, errs = fuentes.recolectar(config.BUSQUEDAS)
         errores += errs
 
-        # Ingesta por correo (Instagram / Facebook Marketplace / reenvios)
+        # Ingesta por correo (Instagram / Facebook Marketplace / reenvios del papa)
         gmail_user = os.environ.get("GMAIL_USER")
         gmail_pass = os.environ.get("GMAIL_APP_PASSWORD")
         if gmail_user and gmail_pass:
             crudos += fuentes.buscar_correo(
-                config.IMAP_CARPETA_INGESTA, gmail_user, gmail_pass
+                usuario=gmail_user,
+                password=gmail_pass,
+                destino=config.CORREO_INGESTA,
+                carpeta=config.IMAP_CARPETA_INGESTA,
+                dias=config.DIAS_INGESTA_CORREO,
             )
         else:
             log.info("Sin credenciales de correo: se omite la ingesta por reenvio.")
@@ -111,26 +122,10 @@ def main() -> int:
     fichas = []
     for i, a in enumerate(candidatos, 1):
         log.info("Evaluando %d/%d: %s", i, len(candidatos), a.get("titulo", "")[:70])
-        if args.sin_api:
-            fichas.append({
-                "id": a["id"], "url": a.get("url", ""), "fuente": a.get("fuente", ""),
-                "titulo": a.get("titulo", ""),
-                "ubicacion_comuna": a.get("ubicacion") or a.get("titulo", "")[:60],
-                "zona": a.get("zona_detectada") or "Fuera de zona",
-                "superficie": "dato faltante", "precio_clp": a.get("precio_clp"),
-                "precio_texto": a.get("nota_precio", ""),
-                "forma_pago": "dato faltante", "estado_rol": "dato faltante",
-                "agua": "dato faltante", "luz": "dato faltante",
-                "veredicto": "Cumple con reservas", "puntaje": 3,
-                "justificacion_puntaje": "Ficha simulada (--sin-api).",
-                "riesgos": [], "datos_faltantes": ["Evaluacion real pendiente"],
-                "comparacion_zona": "sin evaluar", "_error": None,
-            })
-        else:
-            ficha = evaluar(a, datos["avisos"], uf)
-            if ficha.get("_error"):
-                errores.append(f"Evaluacion fallida ({a.get('url','?')[:50]}): {ficha['_error']}")
-            fichas.append(ficha)
+        ficha = evaluar(a, datos["avisos"], uf)
+        if ficha.get("_error"):
+            errores.append(f"Evaluacion fallida ({a.get('url','?')[:50]}): {ficha['_error']}")
+        fichas.append(ficha)
 
     # --- 6. Prioridad y guardado ---------------------------------------------
     # El orden lo manda precio/rol/agua; la localidad solo desempata.
