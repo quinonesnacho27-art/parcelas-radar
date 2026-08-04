@@ -1,6 +1,196 @@
 {
  "avisos": [
   {
+   "ubicacion_comuna": "Quellon",
+   "zona": "Isla de Chiloe",
+   "superficie": "5000 m2",
+   "precio_clp": 8900000,
+   "precio_texto": "$ 8.900.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso, con aprobacion SAG declarada - falta verificarlo en el SII",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4234242274-parcela-con-bosque-nativo-_JM",
+   "titulo": "Parcela Con Bosque Nativo",
+   "id": "c1ca55cd9026dea4",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 92,
+    "cumple_tres": true,
+    "respondidos": 3,
+    "precio": {
+     "puntos": 40,
+     "nivel": "ok",
+     "explicacion": "$8.900.000 esta dentro del objetivo de $10.000.000"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "Puerto y terminal sur de la ruta 5"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde los tres criterios duros, que es poco frecuente en este rubro. El precio esta dentro del objetivo de $10.000.000. Esta un 10% bajo la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 4,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 13000000,
+   "precio_texto": "$ 13.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4012902408-parcela-con-rol-propio-en-dalcahue-a-20-min-del-aeropuerto-_JM",
+   "titulo": "Parcela Con Rol Propio En Dalcahue A 20 Min Del Aeropuerto",
+   "id": "c605b0e3958bdcbe",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 77,
+    "cumple_tres": true,
+    "respondidos": 3,
+    "precio": {
+     "puntos": 25,
+     "nivel": "limite",
+     "explicacion": "$13.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [
+    "El agua se menciona como vertiente o 'factibilidad hidrica': eso no es un derecho de aprovechamiento constituido en la DGA. Sin ese derecho inscrito el suministro no esta garantizado juridicamente y el costo de un pozo queda en tu cancha."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde los tres criterios duros, que es poco frecuente en este rubro. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 31% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 4,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 13000000,
+   "precio_texto": "$ 13.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4012876928-parcela-con-bosque-en-dalcahue-a-20-min-del-aeropuerto-_JM",
+   "titulo": "Parcela Con Bosque En Dalcahue, A 20 Min Del Aeropuerto",
+   "id": "60c4e4bbfe08286c",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 77,
+    "cumple_tres": true,
+    "respondidos": 3,
+    "precio": {
+     "puntos": 25,
+     "nivel": "limite",
+     "explicacion": "$13.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [
+    "El agua se menciona como vertiente o 'factibilidad hidrica': eso no es un derecho de aprovechamiento constituido en la DGA. Sin ese derecho inscrito el suministro no esta garantizado juridicamente y el costo de un pozo queda en tu cancha."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde los tres criterios duros, que es poco frecuente en este rubro. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 31% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 4,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
    "id": "wa-chiloe-nativo-coquiao",
    "url": "https://www.instagram.com/p/DblgK4NgBuf/",
    "fuente": "Instagram - Chiloe Nativo (reenviado por Marcelo)",
@@ -128,6 +318,128 @@
    }
   },
   {
+   "ubicacion_comuna": "Dalcahue, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 9990000,
+   "precio_texto": "$ 9.990.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "Derecho de agua constituido o conexion a red, segun el aviso",
+   "agua_ok": true,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3308752324-exclusivas-parcelas-en-ancud-inversion-_JM",
+   "titulo": "Exclusivas Parcelas En Ancud / Inversión",
+   "id": "4afe0a09630bbd72",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 64,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 40,
+     "nivel": "ok",
+     "explicacion": "$9.990.000 esta dentro del objetivo de $10.000.000"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "El aviso no aclara la factibilidad de agua"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta dentro del objetivo de $10.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Quemchi, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "43 hectareas",
+   "precio_clp": 11500000,
+   "precio_texto": "$ 11.500.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Agua de pozo declarada por el vendedor",
+   "agua_ok": true,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1784435463-hermosa-parcela-en-sector-lecam-isla-chiloe-sur-de-chile-_JM",
+   "titulo": "Hermosa Parcela En Sector Lecam/ Isla Chiloé, Sur De Chile",
+   "id": "0e68b7b7ee0fb5bf",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 61,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 32,
+     "nivel": "limite",
+     "explicacion": "$11.500.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 26,
+     "nivel": "obra",
+     "explicacion": "Pozo declarado por el vendedor"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el rol. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 16% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
    "superficie": "dato faltante",
    "precio_clp": 10900000,
    "precio_texto": "Desde $10.900.000",
@@ -189,6 +501,250 @@
    }
   },
   {
+   "ubicacion_comuna": "Dalcahue, Quemchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "51 hectareas",
+   "precio_clp": 12990000,
+   "precio_texto": "$ 12.990.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1990066751-venta-51-hectareas-en-quemchi-los-lagos-_JM",
+   "titulo": "Venta 51 Héctareas En Quemchi, Los Lagos",
+   "id": "6b62dc95e4b2aabf",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 58,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 25,
+     "nivel": "limite",
+     "explicacion": "$12.990.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el rol. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 31% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue",
+   "zona": "Isla de Chiloe",
+   "superficie": "5000 m2",
+   "precio_clp": 13500000,
+   "precio_texto": "$ 13.500.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4170348796-parcela-chiloe-100-nativo-incluye-plataforma-construida-_JM",
+   "titulo": "Parcela Chiloé. 100% Nativo. Incluye Plataforma Construida",
+   "id": "8e19acbf07050bc2",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 55,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 22,
+     "nivel": "limite",
+     "explicacion": "$13.500.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el rol. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 36% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 11900000,
+   "precio_texto": "$ 11.900.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "Derecho de agua constituido o conexion a red, segun el aviso",
+   "agua_ok": true,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1752012403-parcela-de-topografia-plana-ancud-castro-isla-de-chiloe-_JM",
+   "titulo": "Parcela De Topografia Plana, Ancud / Castro, Isla De Chiloé",
+   "id": "47bb891e2c5c4b17",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 54,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 30,
+     "nivel": "limite",
+     "explicacion": "$11.900.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "El aviso no aclara la factibilidad de agua"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 20% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Quemchi, Castro",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 hectareas",
+   "precio_clp": 12000000,
+   "precio_texto": "$ 12.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4155623958-vendo-parcela-5000-m2-chiloe-bosque-nativo-factibilidad-luz-_JM",
+   "titulo": "Vendo Parcela 5000 M2 Chiloé Bosque Nativo Factibilidad Luz",
+   "id": "6a186c25add8c3f6",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 54,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 30,
+     "nivel": "limite",
+     "explicacion": "$12.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, el mayor centro de servicios de la isla"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 21% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
    "superficie": "dato faltante",
    "precio_clp": null,
    "precio_texto": "no publica precio",
@@ -248,6 +804,68 @@
      "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
     }
    }
+  },
+  {
+   "ubicacion_comuna": "Chonchi, Quellon",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 12150000,
+   "precio_texto": "$ 12.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Solo energia solar; no menciona conexion a la red electrica",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-2042158077-parcelas-en-cercanias-lago-natri-chiloe-desde-300-uf-_JM",
+   "titulo": "Parcelas En Cercanías Lago Natri, Chiloé - Desde 300 Uf",
+   "id": "a0700affe3035eb2",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 53,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 29,
+     "nivel": "limite",
+     "explicacion": "$12.150.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 25 min de Castro, con servicios basicos"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 22% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
   },
   {
    "superficie": "De 2 a 4,1 hectareas",
@@ -438,6 +1056,68 @@
    }
   },
   {
+   "ubicacion_comuna": "Quemchi, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "0,5 hectareas",
+   "precio_clp": 9000000,
+   "precio_texto": "$ 9.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3896883646-exclusivo-proyecto-7-parcelas-en-chiloe-naturaleza-inversion-_JM",
+   "titulo": "Exclusivo Proyecto 7 Parcelas En Chiloé Naturaleza Inversión",
+   "id": "23832adab6de671f",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 45,
+    "cumple_tres": false,
+    "respondidos": 1,
+    "precio": {
+     "puntos": 40,
+     "nivel": "ok",
+     "explicacion": "$9.000.000 esta dentro del objetivo de $10.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso solo responde el precio; el resto hay que preguntarlo. El precio esta dentro del objetivo de $10.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
    "superficie": "5.000 m2",
    "precio_clp": 6900000,
    "precio_texto": "Desde $6.900.000 pagando al contado",
@@ -567,6 +1247,196 @@
    }
   },
   {
+   "ubicacion_comuna": "Chonchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "0,51 hectareas",
+   "precio_clp": 14000000,
+   "precio_texto": "$ 14.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3951886992-parcela-en-proyecto-bosques-de-quiao-bosque-chonchi-_JM",
+   "titulo": "Parcela En Proyecto Bosques De Quiao (bosque), Chonchi",
+   "id": "c7516a2adfac5f9a",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 25,
+    "cumple_tres": false,
+    "respondidos": 1,
+    "precio": {
+     "puntos": 20,
+     "nivel": "limite",
+     "explicacion": "$14.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 25 min de Castro, con servicios basicos"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso solo responde el precio; el resto hay que preguntarlo. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 41% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Chonchi, Castro",
+   "zona": "Isla de Chiloe",
+   "superficie": "7,35 hectareas",
+   "precio_clp": null,
+   "precio_texto": "$ 930.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1952301925-parcela-en-venta-en-chonchi-_JM",
+   "titulo": "Parcela En Venta En Chonchi",
+   "id": "c64258af907d69bb",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, el mayor centro de servicios de la isla"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Pinto",
+   "zona": "Cordillera de Nuble",
+   "superficie": "3 hectareas",
+   "precio_clp": null,
+   "precio_texto": "$ 790.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4191770826-casa-parcela-preciosa-camino-a-las-termas-y-pinto-nuble-_JM",
+   "titulo": "Casa Parcela Preciosa Camino A Las Termas Y Pinto, Ñuble",
+   "id": "1e4dc9bf1d725fda",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Comuna que conecta Chillan con el sector cordillerano"
+    }
+   },
+   "riesgos": [
+    "El aviso no identifica la comuna con precision. Sin comuna exacta no se puede confirmar que caiga dentro de las comunas objetivo."
+   ],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Cordillera de Nuble: $12.990.000 sobre 1 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
    "superficie": "dato faltante",
    "precio_clp": null,
    "precio_texto": "no publica precio",
@@ -627,6 +1497,69 @@
      "explicacion": "Capital provincial, el mayor centro de servicios de la isla"
     }
    }
+  },
+  {
+   "ubicacion_comuna": "Coihueco",
+   "zona": "Cordillera de Nuble",
+   "superficie": "197,92 m2",
+   "precio_clp": null,
+   "precio_texto": "$ 7.475",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3941867888-vendo-maravillosa-casa-en-parcela-camino-a-coihueco-_JM",
+   "titulo": "Vendo Maravillosa Casa En Parcela, Camino A Coihueco",
+   "id": "938af2985655aaac",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "Cerca del embalse, buena conectividad con Chillan"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Cordillera de Nuble: $12.990.000 sobre 1 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
   },
   {
    "superficie": "dato faltante",
@@ -750,6 +1683,312 @@
      "explicacion": "Costa oriental, mas aislada y con menos servicios"
     }
    }
+  },
+  {
+   "ubicacion_comuna": "Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 15000000,
+   "precio_texto": "$ 15.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3770082656-parcela-en-venta-en-ancud-_JM",
+   "titulo": "Parcela En Venta En Ancud",
+   "id": "3714cd24e87fd6f3",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$15.000.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 51% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Quellon",
+   "zona": "Isla de Chiloe",
+   "superficie": "6,000 m2",
+   "precio_clp": 15000000,
+   "precio_texto": "$ 15.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3546444438-venta-de-parcelas-en-isla-caillin-quellon-_JM",
+   "titulo": "Venta De Parcelas En Isla Caillin Quellón",
+   "id": "deb739da7007f19c",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$15.000.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "Puerto y terminal sur de la ruta 5"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 51% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue, Quemchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 16000000,
+   "precio_texto": "$ 16.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Derecho de agua constituido o conexion a red, segun el aviso",
+   "agua_ok": true,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3729280956-parcela-en-lliuco-isla-de-chiloe-a-5-minutos-de-la-playa-_JM",
+   "titulo": "Parcela En Lliuco Isla De Chiloe A 5 Minutos De La Playa",
+   "id": "58330ad11291c019",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$16.000.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "El aviso no aclara la factibilidad de agua"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 61% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Dalcahue, Quemchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 16700000,
+   "precio_texto": "$ 16.700.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1972684463-parcela-semi-despejada-con-acceso-a-laguna-en-quemchi-_JM",
+   "titulo": "Parcela Semi Despejada Con Acceso A Laguna En Quemchi",
+   "id": "5f0d9006ba71fbea",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$16.700.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 68% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Quemchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "20 hectareas",
+   "precio_clp": 16000000,
+   "precio_texto": "$ 16.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-04",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3300558150-parcelas-en-laguna-quemchi-chiloe-_JM",
+   "titulo": "Parcelas En Laguna Quemchi, Chiloé.",
+   "id": "a82e03c48d38a815",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$16.000.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 1,
+     "explicacion": "Costa oriental, mas aislada y con menos servicios"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 61% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $9.900.000 sobre 6 aviso(s) con precio.",
+   "primera_vez": "2026-08-04T19:44:06",
+   "visto_ultima_vez": "2026-08-04T19:44:06",
+   "veces_visto": 1
   },
   {
    "superficie": "dato faltante",
@@ -1773,6 +3012,19 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-04T19:43:17",
+   "revisados": 398,
+   "nuevos": 20,
+   "evaluados": 20,
+   "fuentes": 3,
+   "errores": [
+    "No se pudo consultar el valor real de la UF (mindicador.cl)."
+   ],
+   "uf_valor": 40500.0,
+   "uf_estimada": true,
+   "duracion_s": 48.4
+  },
+  {
    "fecha": "2026-08-04T19:24:43",
    "revisados": 30,
    "nuevos": 0,
@@ -1808,5 +3060,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-04T19:25:18"
+ "actualizado": "2026-08-04T19:44:06"
 }
