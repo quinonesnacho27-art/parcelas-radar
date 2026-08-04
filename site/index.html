@@ -3,120 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1a3a2a">
+<meta name="theme-color" content="#12291d">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Parcelas">
 <title>Parcelas Radar</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127794;</text></svg>">
 <style>
 :root{
-  --verde:#1a3a2a; --verde2:#2d6a4a; --claro:#8fd6a8;
-  --ok:#0f7b3d; --okbg:#e8f6ee;
-  --med:#9a6700; --medbg:#fff6e0;
-  --mal:#8b1a1a; --malbg:#fdeaea;
-  --fondo:#f4f4f2; --papel:#fff; --borde:#e2e2df;
-  --texto:#1a1a1a; --tenue:#6b6b68;
+  --tinta:#14201a; --tinta2:#4a5b52; --tenue:#7c8a83;
+  --papel:#fff; --fondo:#f2f4f2; --linea:#e3e7e4;
+  --verde:#12291d; --verde2:#2f6b48; --menta:#8fd6a8;
+  --ok:#12703f; --okbg:#e6f5ec; --okln:#b6e0c6;
+  --med:#8a5b00; --medbg:#fdf3de; --medln:#efd9a6;
+  --mal:#a02020; --malbg:#fdeceb; --malln:#f2c4c0;
+  --r:12px;
   color-scheme:light;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--fondo);color:var(--texto);
-  font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:0 14px 60px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fondo);color:var(--tinta);
+  font:15px/1.55 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-feature-settings:"tnum" 0}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+h1,h2,h3{margin:0;font-weight:650;letter-spacing:-.015em}
+button,select,input{font-family:inherit}
 
-header{background:var(--verde);color:#fff;padding:22px 0 18px;margin-bottom:0}
-header .wrap{padding-bottom:0}
-.kicker{color:var(--claro);font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase}
-h1{margin:6px 0 4px;font-size:26px;font-weight:700;letter-spacing:-.4px}
-.sub{color:#a8c4b4;font-size:13px}
-
-nav{display:flex;gap:6px;margin-top:18px;overflow-x:auto;scrollbar-width:none}
+/* ---------- Encabezado ---------- */
+header{background:linear-gradient(160deg,#16311f 0%,#0e2217 100%);color:#fff;padding:26px 0 0}
+.kicker{color:var(--menta);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+header h1{font-size:clamp(21px,4.4vw,29px);margin:8px 0 5px;color:#fff}
+.sub{color:#9db8a8;font-size:13.5px}
+nav{display:flex;gap:4px;margin-top:20px;overflow-x:auto;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-nav button{flex:0 0 auto;background:rgba(255,255,255,.1);border:0;color:#cfe3d7;
-  padding:10px 18px;border-radius:8px 8px 0 0;font-size:14px;font-weight:600;cursor:pointer;
-  font-family:inherit}
+nav button{flex:0 0 auto;background:transparent;border:0;color:#a9c6b6;padding:11px 16px;
+  border-radius:10px 10px 0 0;font-size:14px;font-weight:600;cursor:pointer;transition:.15s}
+nav button:hover{color:#fff;background:rgba(255,255,255,.07)}
 nav button.on{background:var(--fondo);color:var(--verde)}
 
-.panel{display:none;padding-top:20px}
+.panel{display:none;padding:22px 0 70px}
 .panel.on{display:block}
 
+/* ---------- Explicación del orden ---------- */
+.regla{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);
+  padding:15px 17px;margin-bottom:16px;display:flex;gap:14px;align-items:flex-start}
+.regla .n{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--verde);
+  color:#fff;font-size:13px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.regla p{margin:0;font-size:13.5px;color:var(--tinta2);line-height:1.6}
+.regla b{color:var(--tinta)}
+
 /* ---------- KPIs ---------- */
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:18px}
-.kpi{background:var(--papel);border:1px solid var(--borde);border-radius:10px;padding:14px}
-.kpi b{display:block;font-size:26px;font-weight:700;line-height:1.1}
-.kpi span{font-size:11px;color:var(--tenue);text-transform:uppercase;letter-spacing:.6px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin-bottom:16px}
+.kpi{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);padding:13px 15px}
+.kpi b{display:block;font-size:25px;font-weight:680;line-height:1.15;letter-spacing:-.02em}
+.kpi span{font-size:10.5px;color:var(--tenue);text-transform:uppercase;letter-spacing:.09em;font-weight:600}
 
 /* ---------- Filtros ---------- */
-.filtros{background:var(--papel);border:1px solid var(--borde);border-radius:10px;
-  padding:14px;margin-bottom:18px}
-.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-label{display:block;font-size:11px;font-weight:700;color:var(--tenue);
-  text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
-select,input[type=text],input[type=number]{width:100%;padding:10px;border:1px solid var(--borde);
-  border-radius:7px;font-size:15px;font-family:inherit;background:#fff;color:var(--texto)}
+.filtros{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);
+  padding:15px 16px;margin-bottom:20px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:13px}
+label{display:block;font-size:10.5px;font-weight:700;color:var(--tenue);
+  text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px}
+select,input[type=text],input[type=number]{width:100%;padding:9px 11px;border:1px solid var(--linea);
+  border-radius:9px;font-size:15px;background:#fff;color:var(--tinta);outline:none;transition:.15s}
+select:focus,input:focus{border-color:var(--verde2);box-shadow:0 0 0 3px rgba(47,107,72,.13)}
 input[type=range]{width:100%;accent-color:var(--verde2)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{background:#eee;border:1px solid var(--borde);border-radius:20px;padding:6px 13px;
-  font-size:13px;cursor:pointer;user-select:none;font-family:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.chip{background:#f5f7f5;border:1px solid var(--linea);border-radius:99px;padding:7px 14px;
+  font-size:13px;font-weight:550;cursor:pointer;user-select:none;transition:.15s}
+.chip:hover{border-color:var(--verde2)}
 .chip.on{background:var(--verde);color:#fff;border-color:var(--verde)}
 .limpiar{background:none;border:0;color:var(--verde2);font-size:13px;font-weight:600;
-  cursor:pointer;padding:8px 0;font-family:inherit;text-decoration:underline}
+  cursor:pointer;padding:10px 0 0;text-decoration:underline;text-underline-offset:3px}
 
-/* ---------- Tarjetas ---------- */
-.card{background:var(--papel);border:1px solid var(--borde);border-left:4px solid #999;
-  border-radius:10px;padding:16px;margin-bottom:14px}
-.card.Cumple{border-left-color:var(--ok)}
-.card[data-v="Cumple con reservas"]{border-left-color:var(--med)}
-.card[data-v="No cumple"]{border-left-color:var(--mal)}
-.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:11px;
-  font-weight:700;letter-spacing:.3px;text-transform:uppercase}
-.b-ok{background:var(--okbg);color:var(--ok)} .b-med{background:var(--medbg);color:var(--med)}
-.b-mal{background:var(--malbg);color:var(--mal)}
-.stars{color:#c8901a;font-size:15px;letter-spacing:1px}
-.card h3{margin:9px 0 2px;font-size:18px;font-weight:700;line-height:1.25}
-.meta{font-size:12px;color:var(--tenue);margin-bottom:12px}
-.dl{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:14px;margin:0}
-.dl dt{color:var(--tenue);font-size:13px}
+/* ---------- Grupos ---------- */
+.grupo{margin:26px 0 13px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.grupo h2{font-size:15px;letter-spacing:.02em}
+.grupo .cuenta{font-size:12.5px;color:var(--tenue);font-weight:600}
+.grupo .pista{flex:1 1 100%;font-size:12.5px;color:var(--tenue);margin-top:2px}
+
+/* ---------- Tarjeta ---------- */
+.card{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);
+  padding:17px;margin-bottom:13px;transition:.15s}
+.card:hover{border-color:#cdd6d0;box-shadow:0 2px 14px rgba(20,32,26,.05)}
+.card.top{border-color:var(--okln);box-shadow:0 1px 0 var(--okln)}
+.chead{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.card h3{font-size:18px;line-height:1.25;margin-bottom:3px}
+.meta{font-size:12.5px;color:var(--tenue)}
+.meta .pt{color:var(--tinta2);font-weight:600}
+
+/* Anillo del índice */
+.anillo{flex:0 0 auto;width:56px;height:56px;position:relative;display:grid;place-items:center}
+.anillo svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.anillo .val{font-size:16px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.anillo .lbl{font-size:8.5px;color:var(--tenue);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+
+/* Los tres criterios */
+.crit{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.c{border:1px solid var(--linea);border-radius:9px;padding:9px 10px;background:#fafbfa}
+.c .k{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue)}
+.c .v{font-size:13px;font-weight:650;margin-top:3px;line-height:1.3}
+.c .d{font-size:11.5px;color:var(--tenue);margin-top:3px;line-height:1.4}
+.c.ok{background:var(--okbg);border-color:var(--okln)} .c.ok .v{color:var(--ok)}
+.c.med{background:var(--medbg);border-color:var(--medln)} .c.med .v{color:var(--med)}
+.c.mal{background:var(--malbg);border-color:var(--malln)} .c.mal .v{color:var(--mal)}
+@media(max-width:520px){.crit{grid-template-columns:1fr}}
+
+.dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px;margin:0}
+.dl dt{color:var(--tenue);font-size:12.5px}
 .dl dd{margin:0}
-.nota{margin-top:12px;padding:10px 12px;background:#fafafa;border-radius:6px;font-size:13.5px;line-height:1.55}
-.riesgos{margin-top:10px;padding:10px 12px;background:var(--malbg);
-  border-left:3px solid #c0392b;border-radius:5px;font-size:13px;color:#5a2020}
-.faltantes{margin-top:10px;padding:10px 12px;background:#eef4fb;
-  border-left:3px solid #2c6fb5;border-radius:5px;font-size:13px;color:#24405c}
-.riesgos ul,.faltantes ul{margin:5px 0 0;padding-left:18px}
-.riesgos b,.faltantes b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
-.acciones{margin-top:13px;display:flex;gap:8px;flex-wrap:wrap}
-.btn{display:inline-block;padding:9px 16px;border-radius:7px;font-size:14px;font-weight:600;
-  text-decoration:none;cursor:pointer;border:0;font-family:inherit}
-.btn-p{background:var(--verde);color:#fff}
-.btn-s{background:#fff;color:var(--verde);border:1px solid var(--verde)}
-
-.vacio{padding:40px 20px;text-align:center;background:var(--papel);border:1px dashed var(--borde);
-  border-radius:10px;color:var(--tenue)}
+.nota{margin-top:12px;padding:11px 13px;background:#f7f9f8;border-radius:9px;
+  font-size:13.5px;color:var(--tinta2);line-height:1.6}
+.aviso{margin-top:10px;padding:10px 13px;border-radius:9px;font-size:13px;line-height:1.55}
+.aviso.r{background:var(--malbg);border-left:3px solid var(--mal);color:#6d1a1a}
+.aviso.p{background:#edf3fa;border-left:3px solid #2c6fb5;color:#1f3d5c}
+.aviso b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;margin-bottom:4px}
+.aviso ul{margin:0;padding-left:17px}
+.aviso li{margin:3px 0}
+.acciones{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:9px 16px;border-radius:9px;font-size:14px;font-weight:600;
+  text-decoration:none;cursor:pointer;border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--verde);color:#fff} .btn-p:hover{background:#1c4230}
+.btn-s{background:#fff;color:var(--verde);border-color:#cdd6d0} .btn-s:hover{border-color:var(--verde)}
+.vacio{padding:44px 22px;text-align:center;background:var(--papel);border:1px dashed var(--linea);
+  border-radius:var(--r);color:var(--tenue)}
 
 /* ---------- Calculadora ---------- */
-.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:760px){.calc{grid-template-columns:1fr}}
-.box{background:var(--papel);border:1px solid var(--borde);border-radius:10px;padding:16px;margin-bottom:16px}
-.box h2{margin:0 0 4px;font-size:16px;font-weight:700}
-.box .hint{font-size:12px;color:var(--tenue);margin-bottom:14px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+@media(max-width:820px){.calc{grid-template-columns:1fr}}
+.box{background:var(--papel);border:1px solid var(--linea);border-radius:var(--r);padding:17px;margin-bottom:16px}
+.box h2{font-size:16px;margin-bottom:4px}
+.box .hint{font-size:12.5px;color:var(--tenue);margin-bottom:15px;line-height:1.55}
 .campo{margin-bottom:13px}
-.campo .ayuda{font-size:11px;color:var(--tenue);margin-top:4px;line-height:1.4}
+.campo .ayuda{font-size:11.5px;color:var(--tenue);margin-top:5px;line-height:1.45}
 .res{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
-  border-bottom:1px solid #f0f0ee;font-size:14px;gap:10px}
+  border-bottom:1px solid #f0f2f0;font-size:14px;gap:12px}
 .res:last-child{border-bottom:0}
 .res span{color:var(--tenue)}
-.res b{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
-.res.total{margin-top:8px;padding-top:14px;border-top:2px solid var(--verde);font-size:16px}
+.res b{font-variant-numeric:tabular-nums;font-weight:640;text-align:right;white-space:nowrap}
+.res.total{margin-top:8px;padding-top:14px;border-top:2px solid var(--verde)}
 .res.total b{font-size:20px;color:var(--verde)}
 .pos{color:var(--ok)!important} .neg{color:var(--mal)!important}
-.veredicto-calc{margin-top:14px;padding:14px;border-radius:8px;font-size:14px;line-height:1.5}
-.vc-ok{background:var(--okbg);color:#0b5c2d} .vc-med{background:var(--medbg);color:#7a5200}
-.vc-mal{background:var(--malbg);color:#6f1515}
-details{margin-top:12px;font-size:13px}
-summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
-.disc{margin-top:22px;font-size:11.5px;color:var(--tenue);line-height:1.6;
-  padding:14px;background:#fafaf8;border:1px solid var(--borde);border-radius:8px}
-.bitacora{font-size:13px;color:var(--tenue)}
-.bitacora div{padding:7px 0;border-bottom:1px solid var(--borde)}
+.vc{margin-top:15px;padding:14px;border-radius:10px;font-size:13.5px;line-height:1.6}
+.vc-ok{background:var(--okbg);color:#0d5730} .vc-med{background:var(--medbg);color:#754e00}
+.vc-mal{background:var(--malbg);color:#7d1c1c}
+details{margin-top:13px;font-size:13px}
+summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:7px 0}
+.disc{margin-top:22px;font-size:11.5px;color:var(--tenue);line-height:1.65;
+  padding:15px;background:#fafbfa;border:1px solid var(--linea);border-radius:10px}
+.bit div{padding:8px 0;border-bottom:1px solid var(--linea);font-size:13px;color:var(--tinta2)}
+.tabla{width:100%;border-collapse:collapse;font-size:13.5px}
+.tabla th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--tenue);padding:0 0 8px}
+.tabla td{padding:8px 0;border-top:1px solid var(--linea)}
+.tabla td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
 </style>
 </head>
 <body>
@@ -127,7 +166,7 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
     <h1>Cordillera de &Ntilde;uble &middot; Isla de Chilo&eacute;</h1>
     <div class="sub" id="sub">Cargando&hellip;</div>
     <nav>
-      <button class="on" data-p="avisos">Avisos</button>
+      <button class="on" data-p="avisos">Parcelas</button>
       <button data-p="calc">Calculadora</button>
       <button data-p="zonas">Precios por zona</button>
       <button data-p="info">C&oacute;mo funciona</button>
@@ -137,24 +176,33 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
 
 <div class="wrap">
 
-<!-- ============ AVISOS ============ -->
+<!-- ======================= PARCELAS ======================= -->
 <section class="panel on" id="p-avisos">
+
+  <div class="regla">
+    <div class="n">1</div>
+    <p><b>El orden manda por precio, rol y agua.</b> Cada parcela recibe hasta 40 puntos por
+    precio, 30 por el rol del SII y 30 por la factibilidad de agua. Arriba van las que
+    responden los tres. <b>La localidad desempata</b>, no decide.</p>
+  </div>
+
   <div class="kpis" id="kpis"></div>
 
   <div class="filtros">
     <div class="fgrid">
       <div>
-        <label for="f-zona">Zona</label>
-        <select id="f-zona"><option value="">Todas</option></select>
-      </div>
-      <div>
         <label for="f-orden">Ordenar por</label>
         <select id="f-orden">
-          <option value="puntaje">Mejor puntaje</option>
-          <option value="reciente">M&aacute;s reciente</option>
+          <option value="cumplimiento">Precio, rol y agua</option>
+          <option value="localidad">Localidad primero</option>
           <option value="barato">Precio m&aacute;s bajo</option>
           <option value="m2">Menor precio por m&sup2;</option>
+          <option value="reciente">M&aacute;s reciente</option>
         </select>
+      </div>
+      <div>
+        <label for="f-zona">Zona</label>
+        <select id="f-zona"><option value="">Todas</option></select>
       </div>
       <div>
         <label for="f-precio">Precio m&aacute;ximo: <span id="f-precio-lbl">sin l&iacute;mite</span></label>
@@ -162,18 +210,15 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
       </div>
       <div>
         <label for="f-texto">Buscar</label>
-        <input type="text" id="f-texto" placeholder="Ancud, vertiente, rol&hellip;">
+        <input type="text" id="f-texto" placeholder="Ancud, pozo, rol&hellip;">
       </div>
     </div>
-    <div class="chips" id="f-veredicto">
-      <span class="chip on" data-v="Cumple">Cumple</span>
-      <span class="chip on" data-v="Cumple con reservas">Con reservas</span>
-      <span class="chip" data-v="No cumple">Descartadas</span>
-    </div>
-    <div class="chips" id="f-extra">
-      <span class="chip" data-x="rol">Solo con rol propio</span>
-      <span class="chip" data-x="agua">Solo con agua confirmada</span>
-      <span class="chip" data-x="contado">Solo al contado</span>
+    <div class="chips" id="f-crit">
+      <span class="chip" data-x="tres">Solo las que cumplen los 3</span>
+      <span class="chip" data-x="rol">Con rol propio</span>
+      <span class="chip" data-x="agua">Con agua respondida</span>
+      <span class="chip" data-x="contado">Al contado</span>
+      <span class="chip" data-x="fuera">Mostrar fuera de zona</span>
     </div>
     <button class="limpiar" id="limpiar">Limpiar filtros</button>
   </div>
@@ -181,20 +226,20 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
   <div id="lista"></div>
 </section>
 
-<!-- ============ CALCULADORA ============ -->
+<!-- ======================= CALCULADORA ======================= -->
 <section class="panel" id="p-calc">
   <div class="calc">
     <div>
       <div class="box">
         <h2>La compra</h2>
-        <div class="hint">Parte eligiendo una parcela del listado o escribe los n&uacute;meros a mano.</div>
+        <div class="hint">Elige una parcela del listado o escribe los n&uacute;meros a mano.</div>
         <div class="campo">
           <label for="c-parcela">Cargar datos de una parcela</label>
           <select id="c-parcela"><option value="">— escribir a mano —</option></select>
         </div>
         <div class="campo">
           <label for="c-precio">Precio de compra (CLP)</label>
-          <input type="number" id="c-precio" value="13000000" step="100000">
+          <input type="number" id="c-precio" value="9900000" step="100000">
         </div>
         <div class="campo">
           <label for="c-sup">Superficie (m&sup2;)</label>
@@ -213,12 +258,12 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
         <div class="campo">
           <label for="c-agua">Agua: pozo o punteras (CLP)</label>
           <input type="number" id="c-agua" value="3500000" step="100000">
-          <div class="ayuda">Si el aviso dice "vertiente" sin derecho de agua constituido, hay que presupuestar esto igual.</div>
+          <div class="ayuda">Si el aviso dice "vertiente" sin derecho constituido en la DGA, hay que presupuestar esto igual.</div>
         </div>
         <div class="campo">
           <label for="c-luz">Electrificaci&oacute;n / empalme (CLP)</label>
           <input type="number" id="c-luz" value="2500000" step="100000">
-          <div class="ayuda">Sube fuerte con la distancia al poste m&aacute;s cercano. Sin factibilidad, pide presupuesto antes de comprar.</div>
+          <div class="ayuda">Sube fuerte con la distancia al poste m&aacute;s cercano.</div>
         </div>
         <div class="campo">
           <label for="c-cierre">Cierre perimetral y acceso (CLP)</label>
@@ -266,7 +311,7 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
         <div id="c-res"></div>
         <div id="c-veredicto"></div>
         <details>
-          <summary>Ver la comparaci&oacute;n con otras alternativas</summary>
+          <summary>Ver otros supuestos de plusval&iacute;a</summary>
           <div id="c-comp" style="margin-top:10px"></div>
         </details>
       </div>
@@ -282,39 +327,53 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
   </div>
 </section>
 
-<!-- ============ ZONAS ============ -->
-<section class="panel" id="p-zonas">
-  <div id="zonas-res"></div>
-</section>
+<!-- ======================= ZONAS ======================= -->
+<section class="panel" id="p-zonas"><div id="zonas-res"></div></section>
 
-<!-- ============ INFO ============ -->
+<!-- ======================= INFO ======================= -->
 <section class="panel" id="p-info">
   <div class="box">
-    <h2>Qu&eacute; hace este sistema</h2>
-    <p>Todos los d&iacute;as a las 8 de la ma&ntilde;ana revisa autom&aacute;ticamente los avisos
-    nuevos de parcelas en Portalinmobiliario y Yapo, filtrados a las dos zonas objetivo:
-    la cordillera de &Ntilde;uble (San Fabi&aacute;n, Coihueco, Pinto, Las Trancas, Recinto)
-    y la Isla de Chilo&eacute; (Ancud, Castro, Quell&oacute;n, Dalcahue, Quemchi, Chonchi,
-    Curaco de V&eacute;lez, Puqueld&oacute;n).</p>
-    <p>Cada aviso que cae dentro de esas zonas se eval&uacute;a contra los criterios:
-    uso de inversi&oacute;n, precio hasta $14 millones, pago al contado, rol propio del SII,
-    factibilidad de agua obligatoria y de luz deseable. El resultado llega por correo y
-    queda guardado ac&aacute;.</p>
+    <h2>C&oacute;mo se ordenan las parcelas</h2>
+    <p class="hint" style="margin-bottom:12px">Los tres criterios duros suman 100 puntos. La localidad no suma: solo desempata.</p>
+    <table class="tabla">
+      <tr><th>Criterio</th><th>Situaci&oacute;n</th><th>Puntos</th></tr>
+      <tr><td rowspan="4"><b>Precio</b></td><td>Hasta $10.000.000</td><td>40</td></tr>
+      <tr><td>Entre $10 y $14 millones</td><td>40 &rarr; 20</td></tr>
+      <tr><td>El aviso no publica precio</td><td>10</td></tr>
+      <tr><td>Sobre $14.000.000</td><td>0</td></tr>
+      <tr><td rowspan="4"><b>Rol</b></td><td>Verificado en el SII</td><td>30</td></tr>
+      <tr><td>Rol propio declarado en el aviso</td><td>22–24</td></tr>
+      <tr><td>Dato faltante</td><td>8</td></tr>
+      <tr><td>Sin rol propio</td><td>0</td></tr>
+      <tr><td rowspan="5"><b>Agua</b></td><td>Derecho constituido en la DGA o red</td><td>30</td></tr>
+      <tr><td>Pozo declarado</td><td>26</td></tr>
+      <tr><td>Vertiente o "factibilidad h&iacute;drica"</td><td>18</td></tr>
+      <tr><td>Dato faltante</td><td>6</td></tr>
+      <tr><td>Sin factibilidad de agua</td><td>0</td></tr>
+    </table>
+    <p class="hint" style="margin:14px 0 0">La localidad se ordena por conectividad y servicios,
+    que es lo que sostiene la plusval&iacute;a: Ancud, Castro, Las Trancas, Recinto y Pinto en el
+    nivel alto; Dalcahue, Chonchi, Quell&oacute;n, San Fabi&aacute;n y Coihueco en el medio;
+    Quemchi, Curaco de V&eacute;lez y Puqueld&oacute;n en el bajo. Es un juicio editable, no un dato.</p>
+  </div>
+  <div class="box">
+    <h2>Qu&eacute; hace el sistema</h2>
+    <p>Todos los d&iacute;as a las 8 de la ma&ntilde;ana revisa los avisos nuevos de parcelas en
+    Portalinmobiliario y Yapo, filtrados a la cordillera de &Ntilde;uble (San Fabi&aacute;n,
+    Coihueco, Pinto, Las Trancas, Recinto) y la Isla de Chilo&eacute; (Ancud, Castro,
+    Quell&oacute;n, Dalcahue, Quemchi, Chonchi, Curaco de V&eacute;lez, Puqueld&oacute;n).
+    Cada aviso se eval&uacute;a, se ordena por precio, rol y agua, y llega por correo.</p>
   </div>
   <div class="box">
     <h2>C&oacute;mo agregar un aviso de Instagram o Facebook</h2>
     <p>Instagram y Facebook Marketplace no permiten que un programa lea sus avisos.
-    La v&iacute;a que s&iacute; funciona es por correo:</p>
-    <ol>
-      <li>Copia el link del aviso (o toma la captura).</li>
-      <li>Env&iacute;alo por correo a la casilla del sistema.</li>
-      <li>A la ma&ntilde;ana siguiente aparece evaluado en el informe, con la misma ficha
-      y el mismo puntaje que los dem&aacute;s.</li>
-    </ol>
+    La v&iacute;a que s&iacute; funciona es por correo: copia el link del aviso,
+    env&iacute;alo a la casilla del sistema, y a la ma&ntilde;ana siguiente aparece
+    evaluado con la misma ficha y el mismo puntaje que los dem&aacute;s.</p>
   </div>
   <div class="box">
-    <h2>Bit&aacute;cora de las &uacute;ltimas corridas</h2>
-    <div class="bitacora" id="bitacora"></div>
+    <h2>&Uacute;ltimas corridas</h2>
+    <div class="bit" id="bitacora"></div>
   </div>
 </section>
 
@@ -326,22 +385,17 @@ summary{cursor:pointer;color:var(--verde2);font-weight:600;padding:6px 0}
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const clp = v => (typeof v === "number" && isFinite(v))
-  ? "$" + Math.round(v).toLocaleString("es-CL") : "dato faltante";
+  ? "$" + Math.round(v).toLocaleString("es-CL") : "sin precio";
 const pct = v => (isFinite(v) ? v.toFixed(1) : "—") + "%";
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 let DATOS = {avisos:[], corridas:[]};
 const estado = {
-  zona:"", orden:"puntaje", precioMax:Infinity, texto:"",
-  veredictos:new Set(["Cumple","Cumple con reservas"]), extras:new Set()
+  orden:"cumplimiento", zona:"", precioMax:Infinity, texto:"", extras:new Set()
 };
 
-/* ---------- Carga ----------
-   Primero intenta data.json (la version viva publicada en GitHub Pages).
-   Si falla — por ejemplo al abrir el archivo con doble clic desde file://,
-   donde Chrome bloquea fetch — cae a data.js, que trae la misma informacion
-   embebida. Asi la pagina sirve tanto en linea como guardada en el escritorio. */
+/* ---------- Carga ---------- */
 fetch("data.json?" + Date.now())
   .then(r => r.ok ? r.json() : Promise.reject(r.status))
   .then(d => { DATOS = d; iniciar(); })
@@ -351,24 +405,23 @@ fetch("data.json?" + Date.now())
     $("#lista").innerHTML = '<div class="vacio">Sin datos aún.</div>';
   });
 
+const P = a => a.prioridad || {};
+const enZona = a => a.zona && a.zona !== "Fuera de zona";
+
 function iniciar(){
-  const n = DATOS.avisos.length;
+  const n = DATOS.avisos.filter(enZona).length;
   const act = DATOS.actualizado ? new Date(DATOS.actualizado) : null;
-  $("#sub").textContent = n + " aviso" + (n===1?"":"s") + " en el historial"
-    + (act ? " · actualizado " + act.toLocaleDateString("es-CL",
-        {day:"numeric",month:"long",hour:"2-digit",minute:"2-digit"}) : "");
+  $("#sub").textContent = n + " parcela" + (n===1?"":"s") + " en zona válida"
+    + " · " + DATOS.avisos.length + " avisos revisados"
+    + (act ? " · " + act.toLocaleDateString("es-CL",{day:"numeric",month:"long"}) : "");
 
-  const zonas = [...new Set(DATOS.avisos.map(a => a.zona).filter(z => z && z !== "Fuera de zona"))];
-  zonas.forEach(z => $("#f-zona").add(new Option(z, z)));
+  [...new Set(DATOS.avisos.filter(enZona).map(a => a.zona))]
+    .forEach(z => $("#f-zona").add(new Option(z, z)));
 
-  const sel = $("#c-parcela");
-  DATOS.avisos
-    .filter(a => a.veredicto !== "No cumple" && a.precio_clp)
-    .sort((a,b)=>(b.puntaje||0)-(a.puntaje||0))
-    .forEach(a => {
-      const o = new Option((a.ubicacion_comuna||"?") + " — " + clp(a.precio_clp), a.id);
-      sel.add(o);
-    });
+  DATOS.avisos.filter(a => enZona(a) && a.precio_clp)
+    .sort((a,b) => (P(b).indice||0)-(P(a).indice||0))
+    .forEach(a => $("#c-parcela").add(
+      new Option((a.ubicacion_comuna||"?") + " — " + clp(a.precio_clp), a.id)));
 
   pintarKpis(); pintar(); pintarZonas(); pintarBitacora(); calcular();
 }
@@ -377,41 +430,32 @@ function iniciar(){
 $$("nav button").forEach(b => b.onclick = () => {
   $$("nav button").forEach(x => x.classList.remove("on"));
   $$(".panel").forEach(x => x.classList.remove("on"));
-  b.classList.add("on");
-  $("#p-" + b.dataset.p).classList.add("on");
+  b.classList.add("on"); $("#p-" + b.dataset.p).classList.add("on");
   window.scrollTo({top:0, behavior:"smooth"});
 });
 
 /* ---------- Filtros ---------- */
-$("#f-zona").onchange = e => { estado.zona = e.target.value; pintar(); };
 $("#f-orden").onchange = e => { estado.orden = e.target.value; pintar(); };
-$("#f-texto").oninput = e => { estado.texto = e.target.value.toLowerCase(); pintar(); };
+$("#f-zona").onchange  = e => { estado.zona  = e.target.value; pintar(); };
+$("#f-texto").oninput  = e => { estado.texto = e.target.value.toLowerCase(); pintar(); };
 $("#f-precio").oninput = e => {
   const v = +e.target.value;
   estado.precioMax = v >= 30000000 ? Infinity : v;
   $("#f-precio-lbl").textContent = v >= 30000000 ? "sin límite" : clp(v);
   pintar();
 };
-$$("#f-veredicto .chip").forEach(c => c.onclick = () => {
-  c.classList.toggle("on");
-  estado.veredictos.has(c.dataset.v) ? estado.veredictos.delete(c.dataset.v)
-                                     : estado.veredictos.add(c.dataset.v);
-  pintar();
-});
-$$("#f-extra .chip").forEach(c => c.onclick = () => {
+$$("#f-crit .chip").forEach(c => c.onclick = () => {
   c.classList.toggle("on");
   estado.extras.has(c.dataset.x) ? estado.extras.delete(c.dataset.x)
                                  : estado.extras.add(c.dataset.x);
   pintar();
 });
 $("#limpiar").onclick = () => {
-  estado.zona=""; estado.orden="puntaje"; estado.precioMax=Infinity; estado.texto="";
-  estado.veredictos = new Set(["Cumple","Cumple con reservas"]); estado.extras.clear();
-  $("#f-zona").value=""; $("#f-orden").value="puntaje"; $("#f-texto").value="";
+  Object.assign(estado, {orden:"cumplimiento", zona:"", precioMax:Infinity, texto:""});
+  estado.extras.clear();
+  $("#f-orden").value="cumplimiento"; $("#f-zona").value=""; $("#f-texto").value="";
   $("#f-precio").value=30000000; $("#f-precio-lbl").textContent="sin límite";
-  $$("#f-veredicto .chip").forEach(c =>
-    c.classList.toggle("on", estado.veredictos.has(c.dataset.v)));
-  $$("#f-extra .chip").forEach(c => c.classList.remove("on"));
+  $$("#f-crit .chip").forEach(c => c.classList.remove("on"));
   pintar();
 };
 
@@ -421,56 +465,85 @@ function supM2(a){
 }
 
 function filtrar(){
-  let r = DATOS.avisos.filter(a => {
+  const r = DATOS.avisos.filter(a => {
+    if (!estado.extras.has("fuera") && !enZona(a)) return false;
     if (estado.zona && a.zona !== estado.zona) return false;
-    if (!estado.veredictos.has(a.veredicto)) return false;
     if (typeof a.precio_clp === "number" && a.precio_clp > estado.precioMax) return false;
-    if (estado.extras.has("rol") && !/rol propio/i.test(a.estado_rol||"")) return false;
-    if (estado.extras.has("agua") && a.agua_ok !== true) return false;
+    if (estado.extras.has("tres")  && !P(a).cumple_tres) return false;
+    if (estado.extras.has("rol")   && !["verificado","declarado"].includes((P(a).rol||{}).nivel)) return false;
+    if (estado.extras.has("agua")  && !["firme","obra","vaga"].includes((P(a).agua||{}).nivel)) return false;
     if (estado.extras.has("contado") && a.cumple_contado !== true) return false;
-    if (estado.texto){
-      const blob = JSON.stringify(a).toLowerCase();
-      if (!blob.includes(estado.texto)) return false;
-    }
+    if (estado.texto && !JSON.stringify(a).toLowerCase().includes(estado.texto)) return false;
     return true;
   });
+
+  const idx = a => P(a).indice || 0;
+  const loc = a => (P(a).localidad||{}).nivel || 0;
   const cmp = {
-    puntaje: (a,b) => (b.puntaje||0)-(a.puntaje||0) || (a.precio_clp||9e9)-(b.precio_clp||9e9),
-    reciente: (a,b) => String(b.primera_vez||"").localeCompare(String(a.primera_vez||"")),
-    barato: (a,b) => (a.precio_clp||9e9)-(b.precio_clp||9e9),
-    m2: (a,b) => {
-      const f = x => (x.precio_clp && supM2(x)) ? x.precio_clp/supM2(x) : 9e9;
-      return f(a)-f(b);
-    }
+    // El orden del proyecto: primero los que responden precio, rol y agua.
+    cumplimiento: (a,b) => (P(b).cumple_tres?1:0)-(P(a).cumple_tres?1:0)
+                        || idx(b)-idx(a) || loc(b)-loc(a)
+                        || (a.precio_clp||9e9)-(b.precio_clp||9e9),
+    localidad:    (a,b) => loc(b)-loc(a) || idx(b)-idx(a)
+                        || (a.precio_clp||9e9)-(b.precio_clp||9e9),
+    barato:       (a,b) => (a.precio_clp||9e9)-(b.precio_clp||9e9),
+    m2:           (a,b) => {
+                    const f = x => (x.precio_clp && supM2(x)) ? x.precio_clp/supM2(x) : 9e9;
+                    return f(a)-f(b);
+                  },
+    reciente:     (a,b) => String(b.primera_vez||"").localeCompare(String(a.primera_vez||""))
   };
   return r.sort(cmp[estado.orden]);
 }
 
 function pintarKpis(){
-  const av = DATOS.avisos;
-  const cumplen = av.filter(a => a.veredicto === "Cumple").length;
-  const precios = av.filter(a => a.veredicto !== "No cumple" && a.precio_clp)
-                    .map(a => a.precio_clp).sort((x,y)=>x-y);
-  const mediana = precios.length ? precios[Math.floor(precios.length/2)] : null;
-  const ult = DATOS.corridas?.[0];
+  const av = DATOS.avisos.filter(enZona);
+  const tres = av.filter(a => P(a).cumple_tres).length;
+  const conRol = av.filter(a => ["verificado","declarado"].includes((P(a).rol||{}).nivel)).length;
+  const conAgua = av.filter(a => ["firme","obra","vaga"].includes((P(a).agua||{}).nivel)).length;
+  const bajo10 = av.filter(a => a.precio_clp && a.precio_clp <= 10000000).length;
   $("#kpis").innerHTML = `
-    <div class="kpi"><b>${av.length}</b><span>Avisos vistos</span></div>
-    <div class="kpi"><b class="pos">${cumplen}</b><span>Cumplen todo</span></div>
-    <div class="kpi"><b style="font-size:19px">${mediana?clp(mediana):"—"}</b><span>Precio mediano</span></div>
-    <div class="kpi"><b>${ult?ult.revisados:0}</b><span>Revisados ayer</span></div>`;
+    <div class="kpi"><b class="pos">${tres}</b><span>Cumplen los 3</span></div>
+    <div class="kpi"><b>${bajo10}</b><span>Bajo $10 millones</span></div>
+    <div class="kpi"><b>${conRol}</b><span>Con rol respondido</span></div>
+    <div class="kpi"><b>${conAgua}</b><span>Con agua respondida</span></div>`;
 }
+
+const GRUPOS = [
+  {test: a => P(a).cumple_tres, t:"Responden precio, rol y agua",
+   pista:"Las únicas donde los tres criterios duros están contestados. Aquí parte la conversación con el vendedor."},
+  {test: a => enZona(a) && (P(a).respondidos||0) === 2, t:"Les falta confirmar un criterio",
+   pista:"Dos de los tres están contestados. Fallan en un solo dato, casi siempre el agua o el precio: una llamada las puede subir al primer grupo."},
+  {test: a => enZona(a), t:"Sin datos suficientes",
+   pista:"El aviso responde uno o ninguno de los tres criterios. Sirven como referencia de precio de la zona."},
+  {test: () => true, t:"Fuera de zona",
+   pista:"Registradas para no volver a analizarlas."},
+];
 
 function pintar(){
   const r = filtrar();
   if (!r.length){
-    $("#lista").innerHTML = '<div class="vacio">Ningún aviso coincide con estos filtros.<br>'
-      + 'Prueba subiendo el precio máximo o activando "Descartadas".</div>';
+    $("#lista").innerHTML = '<div class="vacio">Ninguna parcela coincide con estos filtros.<br>'
+      + 'Prueba subiendo el precio máximo o quitando alguna condición.</div>';
     return;
   }
-  $("#lista").innerHTML = r.map(tarjeta).join("");
+  let html = "";
+  if (estado.orden === "cumplimiento"){
+    const usados = new Set();
+    for (const g of GRUPOS){
+      const grupo = r.filter(a => !usados.has(a.id) && g.test(a));
+      if (!grupo.length) continue;
+      grupo.forEach(a => usados.add(a.id));
+      html += `<div class="grupo"><h2>${g.t}</h2><span class="cuenta">${grupo.length}</span>
+               <div class="pista">${g.pista}</div></div>`
+           +  grupo.map(tarjeta).join("");
+    }
+  } else {
+    html = r.map(tarjeta).join("");
+  }
+  $("#lista").innerHTML = html;
   $$("[data-calc]").forEach(b => b.onclick = () => {
-    $("#c-parcela").value = b.dataset.calc;
-    cargarParcela();
+    $("#c-parcela").value = b.dataset.calc; cargarParcela();
     $$("nav button").forEach(x => x.classList.remove("on"));
     $$(".panel").forEach(x => x.classList.remove("on"));
     $('nav button[data-p="calc"]').classList.add("on");
@@ -479,58 +552,93 @@ function pintar(){
   });
 }
 
+const CLASE = {ok:"ok", limite:"med", caro:"mal", falta:"med",
+               verificado:"ok", declarado:"ok", sin_rol:"mal",
+               firme:"ok", obra:"ok", vaga:"med", sin_agua:"mal"};
+const ETIQ = {
+  precio: {ok:"Dentro del objetivo", limite:"En el límite", caro:"Sobre el techo", falta:"No publica precio"},
+  rol:    {verificado:"Verificado en el SII", declarado:"Declarado en el aviso", falta:"Falta preguntar", sin_rol:"Sin rol propio"},
+  agua:   {firme:"Derecho constituido", obra:"Pozo declarado", vaga:"Mencionada, sin respaldo", falta:"Falta preguntar", sin_agua:"Sin factibilidad"}
+};
+
+function anillo(v){
+  const c = 2*Math.PI*24, off = c*(1 - v/100);
+  const col = v>=75 ? "var(--ok)" : v>=50 ? "var(--med)" : "var(--tenue)";
+  return `<div class="anillo">
+    <svg viewBox="0 0 56 56" width="56" height="56">
+      <circle cx="28" cy="28" r="24" fill="none" stroke="#eceeed" stroke-width="5"/>
+      <circle cx="28" cy="28" r="24" fill="none" stroke="${col}" stroke-width="5"
+        stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"/>
+    </svg>
+    <div style="text-align:center">
+      <div class="val" style="color:${col}">${v}</div>
+      <div class="lbl">de 100</div>
+    </div></div>`;
+}
+
+function critBox(k, nombre, d){
+  const cls = CLASE[d.nivel] || "med";
+  return `<div class="c ${cls}">
+    <div class="k">${nombre} · ${d.puntos} pts</div>
+    <div class="v">${ETIQ[k][d.nivel] || d.nivel}</div>
+    <div class="d">${esc(d.explicacion)}</div></div>`;
+}
+
 function tarjeta(a){
-  const cls = a.veredicto === "Cumple" ? "b-ok"
-            : a.veredicto === "No cumple" ? "b-mal" : "b-med";
-  const p = a.puntaje || 0;
-  const stars = "★".repeat(p) + "☆".repeat(5-p);
+  const p = P(a);
   const sup = supM2(a);
   const m2 = (a.precio_clp && sup) ? ` &middot; ${clp(a.precio_clp/sup)}/m²` : "";
-  const riesgos = (a.riesgos||[]).length
-    ? `<div class="riesgos"><b>Advertencias</b><ul>${a.riesgos.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : "";
-  const falt = (a.datos_faltantes||[]).length
-    ? `<div class="faltantes"><b>Preguntar al vendedor</b><ul>${a.datos_faltantes.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : "";
+  const lista = (arr, cls, titulo) => (arr||[]).length
+    ? `<div class="aviso ${cls}"><b>${titulo}</b><ul>${arr.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>` : "";
   const link = a.url ? `<a class="btn btn-p" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Ver el aviso</a>` : "";
-  const calcBtn = a.precio_clp ? `<button class="btn btn-s" data-calc="${esc(a.id)}">Calcular rentabilidad</button>` : "";
+  const calc = a.precio_clp ? `<button class="btn btn-s" data-calc="${esc(a.id)}">Calcular rentabilidad</button>` : "";
+  const crit = p.precio ? `<div class="crit">
+      ${critBox("precio","Precio",p.precio)}
+      ${critBox("rol","Rol",p.rol)}
+      ${critBox("agua","Agua",p.agua)}</div>` : "";
+  const locl = (p.localidad && p.localidad.nivel)
+    ? `<div class="meta" style="margin-top:9px">📍 <span class="pt">Localidad ${"★".repeat(p.localidad.nivel)}${"☆".repeat(3-p.localidad.nivel)}</span> — ${esc(p.localidad.explicacion)}</div>` : "";
 
-  return `<article class="card" data-v="${esc(a.veredicto)}">
-    <span class="badge ${cls}">${esc(a.veredicto||"sin veredicto")}</span>
-    <span class="stars">${stars}</span>
-    <h3>${esc(a.ubicacion_comuna||"Ubicación no especificada")}</h3>
-    <div class="meta">${esc(a.zona||"")} &middot; ${esc(a.fuente||"")}${m2}</div>
+  return `<article class="card${p.cumple_tres ? " top" : ""}">
+    <div class="chead">
+      <div style="min-width:0">
+        <h3>${esc(a.ubicacion_comuna||"Ubicación no especificada")}</h3>
+        <div class="meta">${esc(a.zona||"")} &middot; ${esc(a.fuente||"")}${m2}</div>
+      </div>
+      ${anillo(p.indice||0)}
+    </div>
+    ${crit}
     <dl class="dl">
+      <dt>Precio</dt><dd><b>${clp(a.precio_clp)}</b> <span style="color:var(--tenue);font-size:12.5px">${esc(a.precio_texto||"")}</span></dd>
       <dt>Superficie</dt><dd>${esc(a.superficie)}</dd>
-      <dt>Precio</dt><dd><b>${clp(a.precio_clp)}</b> <span style="color:#888;font-size:12px">${esc(a.precio_texto||"")}</span></dd>
       <dt>Pago</dt><dd>${esc(a.forma_pago)}</dd>
-      <dt>Rol SII</dt><dd>${esc(a.estado_rol)}</dd>
-      <dt>Agua</dt><dd>${esc(a.agua)}</dd>
       <dt>Luz</dt><dd>${esc(a.luz)}</dd>
     </dl>
+    ${locl}
     <div class="nota">${esc(a.justificacion_puntaje||"")}</div>
-    ${a.comparacion_zona ? `<div style="margin-top:8px;font-size:12px;color:#777;font-style:italic">Comparación en zona: ${esc(a.comparacion_zona)}</div>`:""}
-    ${riesgos}${falt}
-    <div class="acciones">${link}${calcBtn}</div>
+    ${lista(a.riesgos,"r","Advertencias")}
+    ${lista(a.datos_faltantes,"p","Preguntar al vendedor")}
+    <div class="acciones">${link}${calc}</div>
   </article>`;
 }
 
-/* ---------- Precios por zona ---------- */
+/* ---------- Zonas ---------- */
 function pintarZonas(){
-  const zonas = [...new Set(DATOS.avisos.map(a=>a.zona).filter(z=>z&&z!=="Fuera de zona"))];
-  if (!zonas.length){ $("#zonas-res").innerHTML = '<div class="vacio">Aún no hay suficientes avisos para comparar precios.</div>'; return; }
+  const zonas = [...new Set(DATOS.avisos.filter(enZona).map(a=>a.zona))];
+  if (!zonas.length){ $("#zonas-res").innerHTML = '<div class="vacio">Aún no hay suficientes avisos.</div>'; return; }
   $("#zonas-res").innerHTML = zonas.map(z => {
     const av = DATOS.avisos.filter(a => a.zona===z && a.precio_clp);
     const pr = av.map(a=>a.precio_clp).sort((x,y)=>x-y);
     if (!pr.length) return "";
     const med = pr[Math.floor(pr.length/2)];
     const m2s = av.map(a=>{const s=supM2(a); return s?a.precio_clp/s:null}).filter(Boolean).sort((x,y)=>x-y);
-    const medM2 = m2s.length ? m2s[Math.floor(m2s.length/2)] : null;
     return `<div class="box"><h2>${esc(z)}</h2>
-      <div class="hint">${pr.length} aviso${pr.length===1?"":"s"} con precio registrado</div>
+      <div class="hint">${pr.length} aviso${pr.length===1?"":"s"} con precio publicado</div>
       <div class="res"><span>Más barato</span><b>${clp(pr[0])}</b></div>
       <div class="res"><span>Mediana</span><b>${clp(med)}</b></div>
       <div class="res"><span>Más caro</span><b>${clp(pr[pr.length-1])}</b></div>
-      ${medM2?`<div class="res"><span>Mediana por m²</span><b>${clp(medM2)}</b></div>`:""}
-      <div class="res"><span>Bajo el objetivo de $10M</span><b>${pr.filter(x=>x<=10000000).length} de ${pr.length}</b></div>
+      ${m2s.length?`<div class="res"><span>Mediana por m²</span><b>${clp(m2s[Math.floor(m2s.length/2)])}</b></div>`:""}
+      <div class="res"><span>Bajo el objetivo de $10 millones</span><b>${pr.filter(x=>x<=10000000).length} de ${pr.length}</b></div>
     </div>`;
   }).join("");
 }
@@ -540,18 +648,17 @@ function pintarBitacora(){
   if (!c.length){ $("#bitacora").innerHTML = "Sin corridas registradas todavía."; return; }
   $("#bitacora").innerHTML = c.slice(0,14).map(r => {
     const f = new Date(r.fecha).toLocaleDateString("es-CL",{day:"numeric",month:"short"});
-    const err = (r.errores||[]).length ? ` · <span style="color:#8b1a1a">${r.errores.length} fuente(s) con problemas</span>` : "";
+    const err = (r.errores||[]).length ? ` · <span style="color:var(--mal)">${r.errores.length} fuente(s) con problemas</span>` : "";
     return `<div><b>${f}</b> — ${r.revisados} revisados, ${r.nuevos} nuevo(s), ${r.evaluados} evaluado(s)${err}</div>`;
   }).join("");
 }
 
 /* ---------- Calculadora ---------- */
-const campos = ["c-precio","c-sup","c-gastos","c-agua","c-luz","c-cierre","c-otros",
-                "c-anos","c-plus","c-mant","c-corr","c-imp"];
-campos.forEach(id => { const el = $("#"+id); if (el) el.oninput = () => {
-  if (id === "c-anos") $("#c-anos-lbl").textContent = $("#c-anos").value;
-  calcular();
-};});
+["c-precio","c-sup","c-gastos","c-agua","c-luz","c-cierre","c-otros",
+ "c-anos","c-plus","c-mant","c-corr","c-imp"].forEach(id => {
+  const el = $("#"+id); if (!el) return;
+  el.oninput = () => { if (id==="c-anos") $("#c-anos-lbl").textContent = el.value; calcular(); };
+});
 $("#c-parcela").onchange = cargarParcela;
 
 function cargarParcela(){
@@ -559,35 +666,31 @@ function cargarParcela(){
   if (!a) return;
   if (a.precio_clp) $("#c-precio").value = a.precio_clp;
   const s = supM2(a); if (s) $("#c-sup").value = s;
-  // Si el aviso ya trae agua o luz resueltas, ponemos ese costo en 0.
-  $("#c-agua").value = a.agua_ok === true ? 0 : 3500000;
-  $("#c-luz").value  = a.luz_ok  === true ? 800000 : 2500000;
+  // Si el agua ya está resuelta en el aviso, el costo del pozo baja o desaparece.
+  const na = (P(a).agua||{}).nivel;
+  $("#c-agua").value = na==="firme" ? 0 : na==="obra" ? 800000 : 3500000;
+  $("#c-luz").value  = a.luz_ok === true ? 800000 : 2500000;
   calcular();
 }
 
-function num(id){ const v = parseFloat($("#"+id).value); return isFinite(v) ? v : 0; }
+const num = id => { const v = parseFloat($("#"+id).value); return isFinite(v) ? v : 0; };
 
 function calcular(){
   const precio = num("c-precio"), sup = num("c-sup");
   const gastos = precio * num("c-gastos")/100;
   const habilit = num("c-agua") + num("c-luz") + num("c-cierre") + num("c-otros");
   const inicial = precio + gastos + habilit;
-
   const anos = num("c-anos"), g = num("c-plus")/100;
   const mant = num("c-mant") * anos;
   const invTotal = inicial + mant;
-
-  // El terreno se aprecia; las mejoras se consideran incorporadas al valor base.
   const valorFuturo = (precio + habilit) * Math.pow(1+g, anos);
   const corretaje = valorFuturo * num("c-corr")/100;
-  const gananciaBruta = valorFuturo - corretaje - invTotal;
-  const impuesto = gananciaBruta > 0 ? gananciaBruta * num("c-imp")/100 : 0;
-  const neta = gananciaBruta - impuesto;
-
+  const bruta = valorFuturo - corretaje - invTotal;
+  const impuesto = bruta > 0 ? bruta * num("c-imp")/100 : 0;
+  const neta = bruta - impuesto;
   const roi = invTotal ? neta/invTotal*100 : 0;
-  const cagr = (invTotal>0 && anos>0)
-    ? (Math.pow((invTotal+neta)/invTotal, 1/anos)-1)*100 : 0;
-  const puntoEq = invTotal + corretaje;   // valor de venta mínimo para no perder
+  const cagr = (invTotal>0 && anos>0) ? (Math.pow((invTotal+neta)/invTotal, 1/anos)-1)*100 : 0;
+  const puntoEq = invTotal + corretaje;
 
   $("#c-res").innerHTML = `
     <div class="res"><span>Precio de compra</span><b>${clp(precio)}</b></div>
@@ -602,54 +705,44 @@ function calcular(){
     <div class="res"><span>Valor de venta en ${anos} año${anos===1?"":"s"}</span><b>${clp(valorFuturo)}</b></div>
     <div class="res"><span>Comisión de corretaje</span><b>−${clp(corretaje)}</b></div>
     <div class="res"><span>Impuesto sobre la ganancia</span><b>−${clp(impuesto)}</b></div>
-    <div class="res total"><span>Ganancia neta</span>
-      <b class="${neta>=0?"pos":"neg"}">${clp(neta)}</b></div>
-    <div class="res"><span>Retorno sobre lo invertido</span>
-      <b class="${roi>=0?"pos":"neg"}">${pct(roi)}</b></div>
-    <div class="res"><span>Rentabilidad anualizada</span>
-      <b class="${cagr>=0?"pos":"neg"}">${pct(cagr)} anual</b></div>
+    <div class="res total"><span>Ganancia neta</span><b class="${neta>=0?"pos":"neg"}">${clp(neta)}</b></div>
+    <div class="res"><span>Retorno sobre lo invertido</span><b class="${roi>=0?"pos":"neg"}">${pct(roi)}</b></div>
+    <div class="res"><span>Rentabilidad anualizada</span><b class="${cagr>=0?"pos":"neg"}">${pct(cagr)} anual</b></div>
     <div class="res"><span>Punto de equilibrio al vender</span><b>${clp(puntoEq)}</b></div>`;
 
   let cls, txt;
   if (cagr >= 10){
-    cls = "vc-ok";
-    txt = `Con estos supuestos el negocio rinde <b>${pct(cagr)} anual</b>, por encima de lo que
-      normalmente ofrece un depósito a plazo. Ojo: todo depende de que la plusvalía del
-      ${pct(num("c-plus"))} anual se cumpla, y un terreno no se vende de un día para otro.`;
+    cls="vc-ok";
+    txt=`Con estos supuestos rinde <b>${pct(cagr)} anual</b>, por encima de lo que normalmente
+      ofrece un depósito a plazo. Ojo: todo depende de que la plusvalía del ${pct(num("c-plus"))}
+      anual se cumpla, y un terreno no se vende de un día para otro.`;
   } else if (cagr >= 4){
-    cls = "vc-med";
-    txt = `Rinde <b>${pct(cagr)} anual</b>: positivo, pero no espectacular para un activo
-      ilíquido. Para que valga la pena frente a una alternativa más simple, necesitas
-      comprar más barato, gastar menos en habilitación, o creer que la plusvalía será mayor.`;
+    cls="vc-med";
+    txt=`Rinde <b>${pct(cagr)} anual</b>: positivo, pero no espectacular para un activo ilíquido.
+      Para que valga la pena frente a una alternativa más simple, necesitas comprar más barato,
+      gastar menos en habilitación, o creer que la plusvalía será mayor.`;
   } else if (neta >= 0){
-    cls = "vc-mal";
-    txt = `Rinde apenas <b>${pct(cagr)} anual</b>. Con esa cifra, el dinero inmovilizado
-      durante ${anos} año${anos===1?"":"s"} en un activo difícil de vender rinde menos que
-      alternativas mucho más líquidas. Revisa si el precio de compra es negociable.`;
+    cls="vc-mal";
+    txt=`Rinde apenas <b>${pct(cagr)} anual</b>. Con esa cifra, el dinero inmovilizado durante
+      ${anos} año${anos===1?"":"s"} en un activo difícil de vender rinde menos que alternativas
+      mucho más líquidas. Revisa si el precio de compra es negociable.`;
   } else {
-    cls = "vc-mal";
-    txt = `Con estos supuestos <b>se pierde ${clp(Math.abs(neta))}</b>. Tendrías que vender
-      sobre ${clp(puntoEq)} solo para recuperar lo puesto. El sobrecosto de habilitación
+    cls="vc-mal";
+    txt=`Con estos supuestos <b>se pierde ${clp(Math.abs(neta))}</b>. Tendrías que vender sobre
+      ${clp(puntoEq)} solo para recuperar lo puesto. El sobrecosto de habilitación
       (${clp(habilit)}) es la parte que suele quedar fuera de la cuenta al mirar el aviso.`;
   }
-  $("#c-veredicto").innerHTML = `<div class="veredicto-calc ${cls}">${txt}</div>`;
+  $("#c-veredicto").innerHTML = `<div class="vc ${cls}">${txt}</div>`;
 
-  // Comparación con escenarios alternativos de plusvalía
-  const filas = [4,6,8,10,12,15].map(p => {
-    const vf = (precio+habilit)*Math.pow(1+p/100, anos);
-    const co = vf*num("c-corr")/100;
-    const gb = vf - co - invTotal;
-    const im = gb>0 ? gb*num("c-imp")/100 : 0;
-    const nn = gb - im;
-    const cg = invTotal>0 ? (Math.pow((invTotal+nn)/invTotal,1/anos)-1)*100 : 0;
-    return `<div class="res"><span>Si sube ${p}% al año</span>
+  $("#c-comp").innerHTML = [4,6,8,10,12,15].map(pp => {
+    const vf=(precio+habilit)*Math.pow(1+pp/100,anos), co=vf*num("c-corr")/100;
+    const gb=vf-co-invTotal, im=gb>0?gb*num("c-imp")/100:0, nn=gb-im;
+    const cg=invTotal>0?(Math.pow((invTotal+nn)/invTotal,1/anos)-1)*100:0;
+    return `<div class="res"><span>Si sube ${pp}% al año</span>
       <b class="${nn>=0?"pos":"neg"}">${clp(nn)} &nbsp;(${pct(cg)} anual)</b></div>`;
-  }).join("");
-  $("#c-comp").innerHTML = filas +
-    `<div style="margin-top:10px;font-size:12px;color:#6b6b68">
-      Misma parcela, mismo plazo, distintos supuestos de plusvalía. Si el resultado cambia
-      mucho entre una fila y otra, el negocio depende más de tu supuesto que de la parcela.
-    </div>`;
+  }).join("") + `<div style="margin-top:10px;font-size:12px;color:var(--tenue)">
+    Misma parcela, mismo plazo, distintos supuestos. Si el resultado cambia mucho entre una fila
+    y otra, el negocio depende más de tu supuesto que de la parcela.</div>`;
 }
 </script>
 </body>
