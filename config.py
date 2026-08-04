@@ -99,20 +99,33 @@ CRITERIOS = {
 # ---------------------------------------------------------------------------
 # Cada entrada genera una busqueda. Se mantienen acotadas a las zonas objetivo
 # para no gastar tokens evaluando avisos de todo Chile.
+# 'lugar' es el slug de ubicacion de Portalinmobiliario, verificado uno por uno
+# contra el sitio real. 'comuna' es el nombre que debe aparecer en el titulo de la
+# pagina: si no aparece, los resultados se descartan.
+#
+# Ojo con esto: cuando un slug no existe, el sitio NO devuelve 404, devuelve el
+# listado nacional de parcelas con HTTP 200. Por eso la verificacion del titulo es
+# obligatoria y no un lujo.
+#
+# Las comunas sin slug propio (Castro, Curaco de Velez, San Fabian, Pinto) se
+# buscan con "_q_", que es la busqueda de texto libre del portal.
 BUSQUEDAS = [
-    # --- Cordillera de Nuble ---
-    {"fuente": "portalinmobiliario", "query": "parcela san fabian nuble", "zona_hint": "Cordillera de Nuble"},
-    {"fuente": "portalinmobiliario", "query": "parcela coihueco", "zona_hint": "Cordillera de Nuble"},
-    {"fuente": "portalinmobiliario", "query": "parcela pinto nuble", "zona_hint": "Cordillera de Nuble"},
-    {"fuente": "portalinmobiliario", "query": "parcela recinto nuble", "zona_hint": "Cordillera de Nuble"},
-    {"fuente": "portalinmobiliario", "query": "parcela las trancas", "zona_hint": "Cordillera de Nuble"},
     # --- Isla de Chiloe ---
-    {"fuente": "portalinmobiliario", "query": "parcela ancud chiloe", "zona_hint": "Isla de Chiloe"},
-    {"fuente": "portalinmobiliario", "query": "parcela castro chiloe", "zona_hint": "Isla de Chiloe"},
-    {"fuente": "portalinmobiliario", "query": "parcela quellon", "zona_hint": "Isla de Chiloe"},
-    {"fuente": "portalinmobiliario", "query": "parcela dalcahue", "zona_hint": "Isla de Chiloe"},
-    {"fuente": "portalinmobiliario", "query": "parcela chonchi", "zona_hint": "Isla de Chiloe"},
-    {"fuente": "portalinmobiliario", "query": "parcela quemchi", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "ancud-los-lagos", "comuna": "Ancud", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "quellon-los-lagos", "comuna": "Quellon", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "dalcahue-los-lagos", "comuna": "Dalcahue", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "quemchi-los-lagos", "comuna": "Quemchi", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "chonchi-los-lagos", "comuna": "Chonchi", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "puqueldon-los-lagos", "comuna": "Puqueldon", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-castro-chiloe", "comuna": "castro", "zona_hint": "Isla de Chiloe"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-curaco-de-velez", "comuna": "curaco", "zona_hint": "Isla de Chiloe"},
+    # --- Cordillera de Nuble ---
+    {"fuente": "portalinmobiliario", "lugar": "coihueco-nuble", "comuna": "Coihueco", "zona_hint": "Cordillera de Nuble"},
+    {"fuente": "portalinmobiliario", "lugar": "chillan-nuble", "comuna": "Chillan", "zona_hint": "Cordillera de Nuble"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-san-fabian-nuble", "comuna": "san-fabian", "zona_hint": "Cordillera de Nuble"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-pinto-nuble", "comuna": "pinto", "zona_hint": "Cordillera de Nuble"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-las-trancas", "comuna": "trancas", "zona_hint": "Cordillera de Nuble"},
+    {"fuente": "portalinmobiliario", "lugar": "_q_parcela-recinto-nuble", "comuna": "recinto", "zona_hint": "Cordillera de Nuble"},
     # --- Yapo ---
     {"fuente": "yapo", "query": "parcela chiloe", "zona_hint": "Isla de Chiloe"},
     {"fuente": "yapo", "query": "parcela nuble cordillera", "zona_hint": "Cordillera de Nuble"},

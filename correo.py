@@ -272,9 +272,17 @@ def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
 def enviar(html: str, asunto: str, texto_plano: str = "") -> None:
     usuario = os.environ.get("GMAIL_USER")
     password = os.environ.get("GMAIL_APP_PASSWORD")
-    if not usuario or not password:
+
+    faltan = [n for n, v in (("GMAIL_USER", usuario),
+                             ("GMAIL_APP_PASSWORD", password)) if not v]
+    if faltan:
         raise RuntimeError(
-            "Faltan GMAIL_USER y/o GMAIL_APP_PASSWORD en las variables de entorno."
+            f"Falta configurar {' y '.join(faltan)} como secret del repositorio.\n"
+            "  -> Settings > Secrets and variables > Actions > New repository secret\n"
+            "  -> El nombre tiene que escribirse EXACTAMENTE asi, en mayusculas.\n"
+            "  -> GMAIL_APP_PASSWORD es la contrasena de aplicacion de 16 caracteres\n"
+            "     que entrega myaccount.google.com/apppasswords, no la contrasena\n"
+            "     normal de la cuenta."
         )
 
     msg = EmailMessage()
@@ -284,6 +292,15 @@ def enviar(html: str, asunto: str, texto_plano: str = "") -> None:
     msg.set_content(texto_plano or "Abre este correo en un cliente que soporte HTML.")
     msg.add_alternative(html, subtype="html")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
-        s.login(usuario, password)
-        s.send_message(msg)
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+            s.login(usuario, password)
+            s.send_message(msg)
+    except smtplib.SMTPAuthenticationError as e:
+        raise RuntimeError(
+            "Gmail rechazo la contrasena de aplicacion. Revisa que:\n"
+            "  1. La cuenta tenga la verificacion en dos pasos activada.\n"
+            "  2. La contrasena sea la de aplicacion (16 caracteres), no la normal.\n"
+            "  3. Se haya pegado sin espacios.\n"
+            f"  Respuesta de Gmail: {e}"
+        ) from e

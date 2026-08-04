@@ -56,6 +56,12 @@ def main() -> int:
     errores: list[str] = []
     log.info("Motor de evaluacion: %s", motor._elegido())
 
+    # Diagnostico: que credenciales llegaron. Nunca se imprime el valor, solo si
+    # esta o no. Ahorra tener que leer todo el log cuando algo falla.
+    for nombre in ("GMAIL_USER", "GMAIL_APP_PASSWORD"):
+        log.info("  %s: %s", nombre,
+                 "configurado" if os.environ.get(nombre) else "FALTA")
+
     # --- 1. Valor de la UF ---------------------------------------------------
     uf, uf_real = fuentes.valor_uf()
     if not uf_real:

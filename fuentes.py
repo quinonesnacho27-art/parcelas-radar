@@ -37,6 +37,12 @@ def _id(url: str) -> str:
     return hashlib.sha1(url.encode("utf-8")).hexdigest()[:16]
 
 
+def _sin_tildes(texto: str) -> str:
+    import unicodedata
+    t = unicodedata.normalize("NFKD", texto or "")
+    return "".join(c for c in t if not unicodedata.combining(c)).lower().strip()
+
+
 def _limpiar(texto: str | None) -> str:
     if not texto:
         return ""
@@ -79,18 +85,43 @@ def valor_uf() -> tuple[float, bool]:
 # Portalinmobiliario / MercadoLibre Chile
 # ---------------------------------------------------------------------------
 
-def buscar_portalinmobiliario(query: str, max_resultados: int = 30) -> list[dict]:
+def buscar_portalinmobiliario(lugar: str, esperado: str = "",
+                              tope_precio: int | None = None,
+                              max_resultados: int = 40) -> list[dict]:
     """
     Portalinmobiliario corre sobre la infraestructura de MercadoLibre.
-    Se raspa la pagina de resultados publica.
+
+    'lugar' es el slug de ubicacion del sitio ("ancud-los-lagos") o una busqueda
+    de texto ("_q_san-fabian-nuble"). 'esperado' es el nombre de la comuna, que se
+    usa para comprobar que la pagina devuelta sea la correcta.
+
+    Esa comprobacion no es opcional: si el slug no existe, el sitio NO devuelve un
+    404 sino un HTTP 200 con el listado nacional completo de parcelas. Sin este
+    chequeo el sistema se llena de avisos de todo Chile, que es exactamente lo que
+    pasaba antes.
     """
-    slug = re.sub(r"[^a-z0-9]+", "-", query.lower()).strip("-")
-    url = f"https://www.portalinmobiliario.com/venta/parcela/{slug}"
+    # A proposito NO se usa el filtro _PriceRange_ de la URL: rompe las busquedas
+    # de texto "_q_" (devuelve el listado nacional) y da 404 cuando una comuna no
+    # tiene resultados bajo el tope. El filtro de precio de filtro.py hace lo mismo
+    # de forma mas confiable, ya con el valor de la UF resuelto.
+    url = f"https://www.portalinmobiliario.com/venta/parcela/{lugar}"
     r = _get(url)
     if r is None:
         return []
 
     soup = BeautifulSoup(r.text, "lxml")
+
+    titulo = _limpiar(soup.h1.get_text() if soup.h1 else "")
+    if esperado:
+        t_norm = _sin_tildes(titulo)
+        if _sin_tildes(esperado) not in t_norm:
+            log.warning(
+                "Portalinmobiliario devolvio '%s' para '%s': no corresponde a la comuna "
+                "pedida, se descartan los resultados. Revisa el slug en config.BUSQUEDAS.",
+                titulo or "(sin titulo)", lugar,
+            )
+            return []
+
     avisos: list[dict] = []
 
     # Los resultados vienen como <li class="ui-search-layout__item">
@@ -101,7 +132,7 @@ def buscar_portalinmobiliario(query: str, max_resultados: int = 30) -> list[dict
             continue
         href = enlace["href"].split("#")[0]
 
-        titulo = _limpiar(
+        titulo_item = _limpiar(
             enlace.get_text() or (item.select_one("h2").get_text() if item.select_one("h2") else "")
         )
         precio_el = item.select_one(
@@ -119,14 +150,14 @@ def buscar_portalinmobiliario(query: str, max_resultados: int = 30) -> list[dict
             "id": _id(href),
             "fuente": "Portalinmobiliario",
             "url": href,
-            "titulo": titulo,
-            "descripcion": f"{descripcion} {titulo}".strip(),
+            "titulo": titulo_item,
+            "descripcion": f"{descripcion} {titulo_item} {ubicacion}".strip(),
             "precio_texto": precio_texto,
-            "ubicacion": ubicacion,
+            "ubicacion": ubicacion or esperado,
             "fecha": date.today().isoformat(),
         })
 
-    log.info("Portalinmobiliario '%s': %d avisos", query, len(avisos))
+    log.info("Portalinmobiliario %s (%s): %d avisos", lugar, titulo, len(avisos))
     return avisos
 
 
@@ -326,31 +357,44 @@ def buscar_correo(usuario: str, password: str, destino: str,
 # Despachador
 # ---------------------------------------------------------------------------
 
-BUSCADORES = {
-    "portalinmobiliario": buscar_portalinmobiliario,
-    "yapo": buscar_yapo,
-}
-
-
 def recolectar(busquedas: list[dict], pausa: float = 1.5) -> tuple[list[dict], list[str]]:
     """Corre todas las busquedas configuradas. Devuelve (avisos, errores)."""
     todos: list[dict] = []
     vistos: set[str] = set()
     errores: list[str] = []
+    sin_resultado: list[str] = []
 
     for b in busquedas:
-        fn = BUSCADORES.get(b["fuente"])
-        if fn is None:
-            errores.append(f"Fuente desconocida: {b['fuente']}")
-            continue
+        origen = b.get("lugar") or b.get("query", "?")
         try:
-            for aviso in fn(b["query"]):
+            if b["fuente"] == "portalinmobiliario":
+                encontrados = buscar_portalinmobiliario(b["lugar"], b.get("comuna", ""))
+            elif b["fuente"] == "yapo":
+                encontrados = buscar_yapo(b.get("query", ""))
+            else:
+                errores.append(f"Fuente desconocida: {b['fuente']}")
+                continue
+
+            if not encontrados:
+                sin_resultado.append(origen)
+
+            for aviso in encontrados:
                 if aviso["id"] not in vistos:
                     vistos.add(aviso["id"])
-                    aviso["query_origen"] = b["query"]
+                    aviso["query_origen"] = origen
+                    aviso["zona_hint"] = b.get("zona_hint")
                     todos.append(aviso)
         except Exception as e:  # noqa: BLE001
-            errores.append(f"{b['fuente']} / '{b['query']}': {type(e).__name__}: {e}")
+            errores.append(f"{b['fuente']} / '{origen}': {type(e).__name__}: {e}")
         time.sleep(pausa)
+
+    # Si TODAS las busquedas de un portal vuelven vacias, el portal cambio algo.
+    # Conviene que quede anotado en el informe y no pasar de largo.
+    portales = [b for b in busquedas if b["fuente"] == "portalinmobiliario"]
+    if portales and len(sin_resultado) >= len(portales):
+        errores.append(
+            "Ninguna busqueda de Portalinmobiliario devolvio resultados validos. "
+            "Es probable que el sitio haya cambiado sus URLs o su HTML."
+        )
 
     return todos, errores
