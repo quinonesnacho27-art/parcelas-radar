@@ -9,8 +9,6 @@ on:
 
 permissions:
   contents: write           # para hacer commit del historico
-  pages: write
-  id-token: write
 
 concurrency:
   group: parcelas-radar
@@ -38,22 +36,21 @@ jobs:
           URL_WEB: ${{ vars.URL_WEB }}
         run: python main.py
 
+      # Se guarda el historico aunque el envio del correo haya fallado: el
+      # trabajo de scraping y evaluacion ya esta hecho y seria una lastima perderlo.
+      # Al hacer push de site/data.json se dispara solo el workflow "Publicar la web".
       - name: Guardar el historico en el repo
+        if: always()
         run: |
           git config user.name  "parcelas-radar[bot]"
           git config user.email "actions@github.com"
-          git add site/data.json
+          git add site/data.json site/data.js
           if git diff --staged --quiet; then
             echo "Sin cambios en el historico."
           else
             git commit -m "Avisos del $(date -u +%Y-%m-%d)"
             git push
           fi
-
-      - name: Publicar la web
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
 
       - name: Guardar la vista previa del correo
         if: always()
@@ -62,13 +59,3 @@ jobs:
           name: vista-previa-correo
           path: ultimo_informe.html
           if-no-files-found: ignore
-
-  publicar:
-    needs: informe
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4

@@ -1,0 +1,42 @@
+name: Publicar la web
+
+# Publica la carpeta site/ en GitHub Pages.
+# Va separado del informe diario a proposito: asi la web sigue disponible
+# aunque la corrida diaria falle (por ejemplo si se acaba el saldo de la API
+# o si un portal cambia su HTML). Cada vez que el job diario hace commit del
+# historico, este workflow se dispara solo y la web queda al dia.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - ".github/workflows/publicar.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
