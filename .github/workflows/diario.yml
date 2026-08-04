@@ -1,0 +1,74 @@
+name: Informe diario de parcelas
+
+on:
+  schedule:
+    # 08:00 en Chile continental. GitHub usa UTC: en horario de invierno
+    # chileno (UTC-4) esto es 12:00 UTC. En verano (UTC-3) llegara a las 09:00.
+    - cron: "0 12 * * *"
+  workflow_dispatch:        # permite correrlo a mano desde la pestana Actions
+
+permissions:
+  contents: write           # para hacer commit del historico
+  pages: write
+  id-token: write
+
+concurrency:
+  group: parcelas-radar
+  cancel-in-progress: false
+
+jobs:
+  informe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Correr el informe
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          URL_WEB: ${{ vars.URL_WEB }}
+        run: python main.py
+
+      - name: Guardar el historico en el repo
+        run: |
+          git config user.name  "parcelas-radar[bot]"
+          git config user.email "actions@github.com"
+          git add site/data.json
+          if git diff --staged --quiet; then
+            echo "Sin cambios en el historico."
+          else
+            git commit -m "Avisos del $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Publicar la web
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Guardar la vista previa del correo
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vista-previa-correo
+          path: ultimo_informe.html
+          if-no-files-found: ignore
+
+  publicar:
+    needs: informe
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
