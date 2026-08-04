@@ -1029,6 +1029,17 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-04T14:20:38",
+   "revisados": 30,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "errores": [],
+   "uf_valor": 40844.79,
+   "uf_estimada": false,
+   "duracion_s": 35.2
+  },
+  {
    "fecha": "2026-08-03T22:00:00",
    "revisados": 38,
    "nuevos": 28,
@@ -1066,5 +1077,5 @@
    "nota": "Carga inicial: avisos enviados por Marcelo Quinones via WhatsApp."
   }
  ],
- "actualizado": "2026-08-03T21:15:31"
+ "actualizado": "2026-08-04T14:21:13"
 }
