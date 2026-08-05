@@ -3012,6 +3012,19 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-05T14:13:20",
+   "revisados": 401,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "errores": [
+    "No se pudo consultar el valor real de la UF (mindicador.cl)."
+   ],
+   "uf_valor": 40500.0,
+   "uf_estimada": true,
+   "duracion_s": 62.8
+  },
+  {
    "fecha": "2026-08-04T20:13:21",
    "revisados": 398,
    "nuevos": 0,
@@ -3071,5 +3084,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-04T20:14:14"
+ "actualizado": "2026-08-05T14:14:23"
 }
