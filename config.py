@@ -27,14 +27,22 @@ ZONAS = {
     },
     "Isla de Chiloe": {
         "region": "Los Lagos",
+        # Las 10 comunas de la provincia de Chiloe. Queilen y Quinchao se
+        # agregaron el 5 de agosto de 2026: estan en el archipielago igual que
+        # el resto, y dejarlas fuera hacia que avisos legitimos (Pureo, Achao)
+        # se descartaran por una omision de la lista, no por un criterio.
         "comunas": [
             "Ancud", "Castro", "Quellon", "Dalcahue", "Quemchi",
-            "Chonchi", "Curaco de Velez", "Puqueldon",
+            "Chonchi", "Curaco de Velez", "Puqueldon", "Queilen", "Quinchao",
         ],
         "keywords": [
             "ancud", "castro", "quellon", "dalcahue", "quemchi", "chonchi",
-            "curaco de velez", "puqueldon", "chiloe", "coquiao", "linao",
-            "quicavi", "tenaun", "achao",
+            "curaco de velez", "puqueldon", "queilen", "quinchao",
+            "chiloe", "coquiao", "linao", "quicavi", "tenaun", "achao",
+            # sectores y loteos que aparecen en avisos sin nombrar la comuna
+            "coipomo", "tarahuin", "pureo", "choroihue", "isla lemuy",
+            "rilan", "nercon", "cucao", "huillinco", "quinched", "terao",
+            "compu", "yaldad", "chadmo", "detif", "aldachildo",
         ],
     },
 }
@@ -56,6 +64,21 @@ ZONAS_TRAMPA = {
     "hualqui": "Hualqui (Biobio) no esta en la cordillera de Nuble.",
     "antuco": "Antuco (Biobio) no esta en la cordillera de Nuble.",
     "chiloe continental": "El sector continental no cuenta como Isla de Chiloe.",
+    # Agregadas el 5 de agosto de 2026 a partir de los 16 reenvios del papa:
+    # todas aparecieron en avisos reales y ninguna estaba cubierta.
+    "los muermos": "Los Muermos (Los Lagos) es continente, no es Isla de Chiloe.",
+    "fresia": "Fresia (Los Lagos) es continente, no es Isla de Chiloe.",
+    "purranque": "Purranque (Los Lagos) pertenece a la provincia de Osorno, no es Chiloe.",
+    "teodoro schmidt": "Teodoro Schmidt (La Araucania) no esta en las zonas objetivo.",
+    "cherquenco": "Cherquenco (La Araucania) no esta en las zonas objetivo.",
+    "aysen": "La Region de Aysen no esta en las zonas objetivo.",
+    "coyhaique": "Coyhaique (Aysen) no esta en las zonas objetivo.",
+    "carretera austral": "La Carretera Austral queda fuera de las dos zonas objetivo.",
+    "patagonia": "La Patagonia (Aysen o Magallanes) no esta en las zonas objetivo.",
+    "region de los rios": "La Region de Los Rios no esta en las zonas objetivo.",
+    "calbuco": "Calbuco (Los Lagos) es continente, no es Isla de Chiloe.",
+    "maullin": "Maullin (Los Lagos) es continente, no es Isla de Chiloe.",
+    "el tepual": "El aeropuerto El Tepual esta en Puerto Montt, fuera de las zonas objetivo.",
 }
 
 # ---------------------------------------------------------------------------
