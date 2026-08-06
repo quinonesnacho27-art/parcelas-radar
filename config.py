@@ -174,8 +174,12 @@ CORREO_INGESTA = "quinonesnacho27+parcelas@gmail.com"
 # margen de sobra si el job no corre un dia.
 DIAS_INGESTA_CORREO = 3
 
-# Etiqueta opcional. Si existe en Gmail tambien se lee; si no existe no pasa nada.
-IMAP_CARPETA_INGESTA = "ParcelasRadar"
+# Etiqueta opcional, solo como pista. El codigo ya no depende de este nombre:
+# `fuentes._buzones_a_revisar()` lista los buzones de la cuenta, usa el que trae
+# el atributo \All (el nombre cambia con el idioma de Gmail) y reconoce sola
+# cualquier etiqueta que mencione "parcela". Antes decia "ParcelasRadar", la
+# etiqueta real se llama "Parcelas", y eso bastaba para que no se leyera nada.
+IMAP_CARPETA_INGESTA = "Parcelas"
 
 # ---------------------------------------------------------------------------
 # MOTOR DE EVALUACION
