@@ -28,6 +28,7 @@ import filtro
 import fuentes
 import motor
 import prioridad
+import revisados_manual
 from motor import evaluar
 
 logging.basicConfig(
@@ -97,16 +98,40 @@ def main() -> int:
     conocidos = almacen.ids_conocidos(datos)
 
     candidatos = []
+    pendientes = []   # llegaron por correo pero sin texto: no se pueden evaluar todavia
+    descartados = []  # reenviados por el papa que si se leyeron y quedaron fuera de zona
+
     for a in crudos:
         if a["id"] in conocidos:
             continue
+
+        # Los avisos que llegan por correo suelen traer solo el link. Antes de
+        # filtrarlos se intenta completarlos por dos vias, en este orden:
+        #   1. el catalogo de contenido ya leido (revisados_manual.py)
+        #   2. el sitio propio del proyecto, si el link no es de Meta
+        if "correo" in str(a.get("fuente", "")).lower():
+            revisados_manual.aplicar(a)
+            if not a.get("contenido_leido"):
+                extra = fuentes.detalle_url(a.get("url", ""))
+                if extra:
+                    a["descripcion"] = (str(a.get("descripcion", "")) + " | " + extra)[:8000]
+                    a["contenido_leido"] = True
+
         a = filtro.prefiltrar(a, uf)
         if a["pasa_prefiltro"]:
             candidatos.append(a)
+        elif a.get("sin_contenido"):
+            pendientes.append(a)
+        elif "correo" in str(a.get("fuente", "")).lower():
+            # Lo que reenvia el papa se le responde siempre, aunque sea que no.
+            # Los descartes de los portales no: son cientos y no le interesan.
+            descartados.append(a)
 
     log.info(
-        "%d avisos nuevos pasaron el prefiltro (de %d sin ver antes)",
+        "%d avisos nuevos pasaron el prefiltro, %d quedaron pendientes de leer "
+        "(de %d sin ver antes)",
         len(candidatos),
+        len(pendientes),
         len([a for a in crudos if a["id"] not in conocidos]),
     )
 
@@ -121,6 +146,12 @@ def main() -> int:
     for a in candidatos:
         if a.get("fuente") == "Portalinmobiliario" and a.get("url"):
             detalle = fuentes.detalle_portalinmobiliario(a["url"])
+            if detalle:
+                a["descripcion"] = (a.get("descripcion", "") + " | " + detalle)[:8000]
+        # Si el catalogo apunta al sitio propio del proyecto, se lee tambien:
+        # ahi suele estar la superficie y el detalle del agua que el post omite.
+        elif a.get("url_proyecto"):
+            detalle = fuentes.detalle_url(a["url_proyecto"])
             if detalle:
                 a["descripcion"] = (a.get("descripcion", "") + " | " + detalle)[:8000]
 
@@ -149,6 +180,7 @@ def main() -> int:
         "nuevos": len(nuevas),
         "evaluados": len(fichas),
         "fuentes": len({b["fuente"] for b in config.BUSQUEDAS}) + 1,
+        "pendientes": len(pendientes),
         "errores": errores,
         "uf_valor": uf,
         "uf_estimada": not uf_real,
@@ -159,7 +191,8 @@ def main() -> int:
     log.info("Historico guardado: %d avisos en total", len(datos["avisos"]))
 
     # --- 7. Correo -----------------------------------------------------------
-    html = correo.construir_html(nuevas, resumen, URL_WEB)
+    html = correo.construir_html(nuevas, resumen, URL_WEB,
+                                 pendientes=pendientes, descartados=descartados)
     salida = os.path.join(os.path.dirname(__file__), "ultimo_informe.html")
     with open(salida, "w", encoding="utf-8") as f:
         f.write(html)
@@ -175,6 +208,10 @@ def main() -> int:
         asunto = f"{config.ASUNTO_BASE}: {len(mejores)} con precio, rol y agua - {inicio:%d/%m}"
     elif n:
         asunto = f"{config.ASUNTO_BASE}: {n} aviso{'s' if n != 1 else ''} nuevo{'s' if n != 1 else ''} - {inicio:%d/%m}"
+    elif pendientes:
+        p = len(pendientes)
+        asunto = (f"{config.ASUNTO_BASE}: {p} enlace{'s' if p != 1 else ''} "
+                  f"por leer - {inicio:%d/%m}")
     else:
         asunto = f"{config.ASUNTO_BASE}: sin novedades - {inicio:%d/%m}"
 
