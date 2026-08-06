@@ -111,14 +111,30 @@ def buscar_portalinmobiliario(lugar: str, esperado: str = "",
 
     soup = BeautifulSoup(r.text, "lxml")
 
+    # El <h1> es la fuente preferida, pero el sitio empezo a servir paginas sin
+    # <h1> a los clientes que no son navegador (6 de agosto de 2026: las 14
+    # busquedas devolvieron "(sin titulo)" desde GitHub Actions, mientras la
+    # misma URL abierta a mano mostraba 97 resultados). El <title> viene en el
+    # HTML crudo con la misma informacion, asi que sirve de respaldo.
     titulo = _limpiar(soup.h1.get_text() if soup.h1 else "")
+    if not titulo:
+        titulo = _limpiar(soup.title.get_text() if soup.title else "")
+
     if esperado:
-        t_norm = _sin_tildes(titulo)
-        if _sin_tildes(esperado) not in t_norm:
+        if not titulo:
+            # Ni h1 ni title: no es que el slug este malo, es que no llego la
+            # pagina. Decirlo distinto importa, porque el arreglo es otro.
+            log.warning(
+                "Portalinmobiliario devolvio una pagina sin titulo para '%s'. "
+                "Probablemente esta bloqueando al robot o la pagina se arma con "
+                "JavaScript; el slug no es el problema.", lugar,
+            )
+            return []
+        if _sin_tildes(esperado) not in _sin_tildes(titulo):
             log.warning(
                 "Portalinmobiliario devolvio '%s' para '%s': no corresponde a la comuna "
                 "pedida, se descartan los resultados. Revisa el slug en config.BUSQUEDAS.",
-                titulo or "(sin titulo)", lugar,
+                titulo, lugar,
             )
             return []
 
@@ -316,8 +332,83 @@ _DOMINIOS_AVISO = ("instagram.com", "facebook.com", "fb.watch", "portalinmobilia
                    "yapo.cl", "mercadolibre", "toctoc", "parcela", "terreno")
 
 
+_RE_BUZON = re.compile(r'^\((?P<flags>[^)]*)\)\s+"[^"]*"\s+(?P<nombre>.+)$')
+
+
+def _buzones_a_revisar(M, carpeta_pista: str | None) -> tuple[list[str], list[str]]:
+    """
+    Decide en que buzones IMAP buscar, preguntandole al servidor.
+
+    POR QUE NO SE PUEDE USAR "[Gmail]/All Mail" A SECAS
+    ---------------------------------------------------
+    Gmail traduce el nombre de sus carpetas especiales al idioma de la cuenta.
+    En una cuenta en espanol "All Mail" se llama "[Gmail]/Todos", asi que el
+    SELECT fallaba, el codigo hacia `continue`, y la busqueda terminaba sin
+    revisar nada. Sumado a que los correos del papa los archiva un filtro (no
+    quedan en INBOX) y a que la etiqueta se llama "Parcelas" y no
+    "ParcelasRadar", los tres buzones que se probaban estaban vacios o no
+    existian. Resultado: 0 avisos, todos los dias, sin un solo error en el log.
+
+    La solucion es no adivinar nombres: se listan los buzones y se elige el que
+    trae el atributo \\All, que es igual en todos los idiomas. Ademas se
+    reconoce cualquier etiqueta que mencione "parcela", asi da lo mismo como la
+    haya bautizado el usuario.
+
+    Devuelve (buzones_en_orden, diagnostico).
+    """
+    diagnostico: list[str] = []
+    todas: list[tuple[str, str]] = []
+
+    try:
+        estado, lineas = M.list()
+    except Exception as e:  # noqa: BLE001
+        estado, lineas = "NO", []
+        diagnostico.append(f"No se pudo listar los buzones IMAP: {type(e).__name__}: {e}")
+
+    if estado == "OK":
+        for linea in lineas or []:
+            s = linea.decode("utf-8", "replace") if isinstance(linea, bytes) else str(linea)
+            m = _RE_BUZON.match(s.strip())
+            if m:
+                todas.append((m.group("nombre").strip().strip('"'), m.group("flags")))
+
+    buzones: list[str] = []
+
+    # 1) La carpeta "todos los mensajes", identificada por atributo, no por nombre.
+    for nombre, flags in todas:
+        if "\\All" in flags and nombre not in buzones:
+            buzones.append(nombre)
+    if not buzones:
+        diagnostico.append(
+            "El servidor no expuso la carpeta \\All (todos los mensajes). "
+            "Se buscara solo en INBOX y en las etiquetas reconocidas."
+        )
+
+    # 2) Cualquier etiqueta que hable de parcelas, se llame como se llame.
+    for nombre, _ in todas:
+        if "parcela" in _sin_tildes(nombre) and nombre not in buzones:
+            buzones.append(nombre)
+
+    # 3) La etiqueta configurada, si de verdad existe.
+    if carpeta_pista and carpeta_pista not in buzones:
+        if any(n == carpeta_pista for n, _ in todas):
+            buzones.append(carpeta_pista)
+        elif todas:
+            diagnostico.append(
+                f"La etiqueta '{carpeta_pista}' de config.IMAP_CARPETA_INGESTA no "
+                f"existe en la cuenta. Se ignora."
+            )
+
+    # 4) INBOX al final: es donde caen los correos que ningun filtro archiva.
+    if "INBOX" not in buzones:
+        buzones.append("INBOX")
+
+    return buzones, diagnostico
+
+
 def buscar_correo(usuario: str, password: str, destino: str,
-                  carpeta: str | None = None, dias: int = 3) -> list[dict]:
+                  carpeta: str | None = None,
+                  dias: int = 3) -> tuple[list[dict], list[str]]:
     """
     Lee los avisos que llegan por correo y los convierte en fichas evaluables.
 
@@ -325,9 +416,9 @@ def buscar_correo(usuario: str, password: str, destino: str,
     publica de avisos y el scraping viola sus terminos, asi que el aviso entra
     por reenvio humano y de ahi en adelante se evalua igual que cualquier otro.
 
-    Busca por destinatario (el alias con "+" de Gmail) para no depender de que
-    el usuario configure filtros ni etiquetas. Si ademas existe la etiqueta
-    indicada, tambien la revisa.
+    Devuelve (avisos, problemas). 'problemas' viaja hasta el recuadro amarillo
+    del informe: esta parte fallo tres dias seguidos sin que se notara porque
+    solo escribia un log que nadie lee.
     """
     import email
     import imaplib
@@ -336,6 +427,7 @@ def buscar_correo(usuario: str, password: str, destino: str,
 
     avisos: list[dict] = []
     vistos: set[str] = set()
+    problemas: list[str] = []
 
     try:
         M = imaplib.IMAP4_SSL("imap.gmail.com")
@@ -344,22 +436,45 @@ def buscar_correo(usuario: str, password: str, destino: str,
         desde = date.fromordinal(datetime.now().date().toordinal() - dias)
         fecha_imap = desde.strftime("%d-%b-%Y")
 
-        # 1) Todo lo dirigido al alias, en cualquier carpeta.
-        # 2) Ademas la etiqueta dedicada, si el usuario la creo.
-        busquedas = [("[Gmail]/All Mail", f'(SINCE "{fecha_imap}" TO "{destino}")'),
-                     ("INBOX", f'(SINCE "{fecha_imap}" TO "{destino}")')]
-        if carpeta:
-            busquedas.append((carpeta, f'(SINCE "{fecha_imap}")'))
+        buzones, diag = _buzones_a_revisar(M, carpeta)
+        problemas += diag
+        log.info("Buzones a revisar: %s", ", ".join(buzones))
 
-        for buzon, criterio in busquedas:
-            estado, _ = M.select(f'"{buzon}"', readonly=True)
+        # Dos formas de preguntar lo mismo. X-GM-RAW es la busqueda propia de
+        # Gmail y entiende "deliveredto:", que resuelve bien el alias con "+";
+        # el TO de IMAP estandar a veces no lo hace. Si la primera no devuelve
+        # nada se prueba la segunda antes de dar el buzon por vacio.
+        criterios = [
+            ("X-GM-RAW", f'"deliveredto:{destino} newer_than:{dias}d"'),
+            ("TO", f'(SINCE "{fecha_imap}" TO "{destino}")'),
+        ]
+
+        encontrados_totales = 0
+
+        for buzon in buzones:
+            try:
+                estado, _ = M.select(f'"{buzon}"', readonly=True)
+            except Exception as e:  # noqa: BLE001
+                problemas.append(f"No se pudo abrir el buzon '{buzon}': {type(e).__name__}")
+                continue
             if estado != "OK":
                 continue
-            estado, datos = M.search(None, criterio)
-            if estado != "OK":
-                continue
 
-            for num in (datos[0].split() or [])[-60:]:
+            nums: list[bytes] = []
+            for modo, criterio in criterios:
+                try:
+                    if modo == "X-GM-RAW":
+                        estado, datos = M.search(None, "X-GM-RAW", criterio)
+                    else:
+                        estado, datos = M.search(None, criterio)
+                except Exception:  # noqa: BLE001
+                    continue
+                if estado == "OK" and datos and datos[0]:
+                    nums = datos[0].split()
+                    log.info("  %s [%s]: %d mensajes", buzon, modo, len(nums))
+                    break
+
+            for num in nums[-60:]:
                 estado, bruto = M.fetch(num, "(RFC822)")
                 if estado != "OK" or not bruto or not bruto[0]:
                     continue
@@ -402,14 +517,24 @@ def buscar_correo(usuario: str, password: str, destino: str,
                     "fecha": fecha[:31] or date.today().isoformat(),
                     "remitente": remitente,
                 })
+                encontrados_totales += 1
             M.close()
 
         M.logout()
+
+        if encontrados_totales == 0:
+            problemas.append(
+                f"No se encontro ningun correo dirigido a {destino} en los ultimos "
+                f"{dias} dias. Se revisaron estos buzones: {', '.join(buzones)}."
+            )
     except Exception as e:  # noqa: BLE001
         log.warning("Ingesta por correo fallo: %s: %s", type(e).__name__, e)
+        problemas.append(
+            f"La lectura de la casilla {destino} fallo: {type(e).__name__}: {e}"
+        )
 
     log.info("Correo (%s): %d avisos", destino, len(avisos))
-    return avisos
+    return avisos, problemas
 
 
 # ---------------------------------------------------------------------------
@@ -452,8 +577,10 @@ def recolectar(busquedas: list[dict], pausa: float = 1.5) -> tuple[list[dict], l
     portales = [b for b in busquedas if b["fuente"] == "portalinmobiliario"]
     if portales and len(sin_resultado) >= len(portales):
         errores.append(
-            "Ninguna busqueda de Portalinmobiliario devolvio resultados validos. "
-            "Es probable que el sitio haya cambiado sus URLs o su HTML."
+            "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log "
+            "aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay "
+            "nada que arreglar en los slugs: hay que esperar o cambiar de fuente. "
+            "Los avisos que llegan por correo no dependen de esto y siguen entrando."
         )
 
     return todos, errores
