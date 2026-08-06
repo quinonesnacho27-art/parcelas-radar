@@ -177,6 +177,65 @@ def detalle_portalinmobiliario(url: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Sitio propio del proyecto
+# ---------------------------------------------------------------------------
+
+# Dominios de Meta: no se leen nunca. No es una limitacion tecnica sino una
+# decision del proyecto (ver README). Si alguna vez se agrega otro dominio que
+# tampoco se deba tocar, va aqui y el resto del codigo no cambia.
+_DOMINIOS_VETADOS = (
+    "instagram.com", "facebook.com", "fb.watch", "fb.me", "messenger.com",
+    "threads.net", "whatsapp.com", "wa.me",
+)
+
+
+def _vetado(url: str) -> bool:
+    u = (url or "").lower()
+    return any(d in u for d in _DOMINIOS_VETADOS)
+
+
+def detalle_url(url: str) -> str:
+    """
+    Baja el texto de la pagina de un proyecto para completar la ficha.
+
+    Muchos avisos de Instagram llevan a un sitio propio (choroihue.cl,
+    aguasdelquetro.cl) que publica precio, comuna, superficie y rol de forma
+    perfectamente legible. Ese sitio SI se puede leer: es una pagina publica
+    de venta, hecha para que la lean.
+
+    Devuelve "" para dominios vetados y para paginas que no dan texto util
+    (las hechas con JavaScript devuelven un cascaron vacio).
+    """
+    if not url or _vetado(url):
+        return ""
+
+    r = _get(url)
+    if r is None:
+        return ""
+
+    soup = BeautifulSoup(r.text, "lxml")
+    for basura in soup(["script", "style", "noscript", "svg", "iframe"]):
+        basura.decompose()
+
+    partes = []
+    # La meta description suele traer el resumen comercial completo y limpio.
+    for sel, attr in (('meta[name="description"]', "content"),
+                      ('meta[property="og:description"]', "content"),
+                      ('meta[property="og:title"]', "content")):
+        tag = soup.select_one(sel)
+        if tag and tag.get(attr):
+            partes.append(_limpiar(tag[attr]))
+
+    cuerpo = soup.select_one("main") or soup.body
+    if cuerpo:
+        partes.append(_limpiar(cuerpo.get_text(" ")))
+
+    texto = " | ".join(dict.fromkeys(p for p in partes if p))
+    # Menos de 200 caracteres = pagina renderizada con JavaScript, no hay nada.
+    return texto[:6000] if len(texto) >= 200 else ""
+
+
+# ---------------------------------------------------------------------------
 # Yapo.cl
 # ---------------------------------------------------------------------------
 
