@@ -81,14 +81,20 @@ def main() -> int:
         gmail_user = os.environ.get("GMAIL_USER")
         gmail_pass = os.environ.get("GMAIL_APP_PASSWORD")
         if gmail_user and gmail_pass:
-            crudos += fuentes.buscar_correo(
+            del_correo, probs_correo = fuentes.buscar_correo(
                 usuario=gmail_user,
                 password=gmail_pass,
                 destino=config.CORREO_INGESTA,
                 carpeta=config.IMAP_CARPETA_INGESTA,
                 dias=config.DIAS_INGESTA_CORREO,
             )
+            crudos += del_correo
+            errores += probs_correo
         else:
+            errores.append(
+                "Faltan las credenciales de Gmail: no se pudieron leer los avisos "
+                "reenviados por correo."
+            )
             log.info("Sin credenciales de correo: se omite la ingesta por reenvio.")
 
     log.info("Recolectados %d avisos en bruto", len(crudos))
