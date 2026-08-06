@@ -115,11 +115,17 @@ def detectar_zona(texto: str) -> tuple[str | None, str]:
 
     # Primero las trampas: lugares del sur que NO califican.
     # Solo descartan si ademas no hay una keyword valida en el texto.
+    #
+    # Se elige la que aparece ANTES en el texto, no la primera del diccionario.
+    # Los avisos listan tiempos de viaje ("a 35 min de Puerto Varas") y con el
+    # orden del diccionario un aviso de Los Muermos terminaba explicado como
+    # "Puerto Varas": el descarte era correcto pero el motivo mentia.
+    encontradas = [(t.index(clave), clave, motivo)
+                   for clave, motivo in ZONAS_TRAMPA.items() if clave in t]
     trampa_encontrada = None
-    for clave, motivo in ZONAS_TRAMPA.items():
-        if clave in t:
-            trampa_encontrada = (clave, motivo)
-            break
+    if encontradas:
+        _, clave, motivo = min(encontradas)
+        trampa_encontrada = (clave, motivo)
 
     for zona, cfg in ZONAS.items():
         for kw in cfg["keywords"]:
@@ -154,6 +160,25 @@ def prefiltrar(aviso: dict, uf_valor: float = UF_FALLBACK) -> dict:
         str(aviso.get(k, "")) for k in ("titulo", "descripcion", "precio_texto", "ubicacion")
     )
 
+    # Un aviso que es solo un link no esta "fuera de zona": es un aviso que
+    # todavia no se ha leido. La diferencia importa, porque uno se descarta
+    # para siempre y el otro hay que ir a buscarlo. Antes se confundian y por
+    # eso los 16 reenvios del 5 de agosto de 2026 desaparecieron sin dejar
+    # rastro en el informe.
+    sin_urls = re.sub(r"https?://\S+", " ", texto)
+    if len(normalizar(sin_urls)) < 40:
+        aviso["zona_detectada"] = None
+        aviso["explicacion_zona"] = "el aviso llego sin texto: solo el enlace"
+        aviso["precio_clp"] = None
+        aviso["nota_precio"] = "sin texto"
+        aviso["sin_contenido"] = True
+        aviso["pasa_prefiltro"] = False
+        aviso["motivo_prefiltro"] = (
+            "pendiente de leer: el correo trae solo el enlace, sin texto del aviso"
+        )
+        return aviso
+
+    aviso["sin_contenido"] = False
     zona, explic_zona = detectar_zona(texto)
     precio, nota_precio = extraer_precio_clp(texto, uf_valor)
 
