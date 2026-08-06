@@ -159,8 +159,99 @@ def _tarjeta(f: dict, url_web: str) -> str:
 </div>"""
 
 
-def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
+def _bloque_pendientes(pendientes: list[dict]) -> str:
+    """
+    Los enlaces que llegaron pero todavia no se pudieron leer.
+
+    Existe para que nada desaparezca en silencio. Antes, un aviso reenviado sin
+    texto se descartaba en el prefiltro y no aparecia en ninguna parte: el papa
+    mandaba diez links y recibia "sin novedades". Ahora los ve, con el enlace
+    tocable desde el celular, y sabe que llegaron.
+    """
+    if not pendientes:
+        return ""
+
+    filas = ""
+    for a in pendientes:
+        url = a.get("url", "")
+        origen = str(a.get("fuente", "")).replace(" (enviado por correo)", "")
+        fecha = str(a.get("fecha", ""))[:16]
+        filas += (
+            '<div style="padding:10px 0;border-bottom:1px solid #ececec">'
+            f'<a href="{url}" style="color:#1a5fb4;text-decoration:none;font-size:13px;'
+            f'word-break:break-all">{url[:90]}</a>'
+            f'<div style="font-size:11.5px;color:#999;margin-top:3px">{origen} &middot; {fecha}</div>'
+            "</div>"
+        )
+
+    n = len(pendientes)
+    return (
+        '<div style="margin:26px 0 12px">'
+        '<div style="font-size:14px;font-weight:700;color:#1a5fb4;'
+        'text-transform:uppercase;letter-spacing:.5px">'
+        f'Enlaces recibidos, pendientes de leer ({n})</div>'
+        '<div style="font-size:12.5px;color:#888;margin-top:3px">'
+        'Llegaron por correo con el enlace solamente. Instagram y Facebook no se '
+        'pueden leer de forma automatica, asi que estos quedan a la espera: se '
+        'evaluan en cuanto se lea el contenido y aparecen en un proximo informe. '
+        'Mientras tanto, el enlace se abre tocandolo.</div>'
+        '<div style="margin-top:10px;padding:4px 14px;background:#f7f9fc;'
+        'border-radius:8px;border:1px solid #e4eaf2">'
+        f'{filas}</div></div>'
+    )
+
+
+def _bloque_descartados(descartados: list[dict]) -> str:
+    """
+    Lo que reenvio el papa, se leyo, y quedo fuera de zona.
+
+    Va en una linea por aviso, sin ficha: no vale la pena el espacio. Pero va,
+    porque si manda diez links y en el informe aparecen cuatro, los otros seis
+    parecen perdidos. Aqui ve que se revisaron y por que no califican.
+    """
+    if not descartados:
+        return ""
+
+    filas = ""
+    for a in descartados:
+        titulo = _limpiar_titulo(a.get("titulo", "")) or a.get("url", "")
+        motivo = a.get("explicacion_zona") or a.get("motivo_prefiltro", "")
+        motivo = motivo.replace("FUERA DE ZONA: ", "")
+        url = a.get("url", "")
+        filas += (
+            '<div style="padding:9px 0;border-bottom:1px solid #f0e8e8">'
+            f'<a href="{url}" style="color:#5c5c5a;text-decoration:none;font-size:13px;'
+            f'font-weight:600">{titulo[:72]}</a>'
+            f'<div style="font-size:11.5px;color:#a08585;margin-top:2px">{motivo[:150]}</div>'
+            "</div>"
+        )
+
+    n = len(descartados)
+    return (
+        '<div style="margin:26px 0 12px">'
+        '<div style="font-size:14px;font-weight:700;color:#8b1a1a;'
+        'text-transform:uppercase;letter-spacing:.5px">'
+        f'Reenviados que no califican ({n})</div>'
+        '<div style="font-size:12.5px;color:#888;margin-top:3px">'
+        'Se leyeron completos y quedaron fuera de las dos zonas objetivo. '
+        'No hace falta volver a mandarlos.</div>'
+        '<div style="margin-top:10px;padding:4px 14px;background:#fdf8f8;'
+        'border-radius:8px;border:1px solid #f2e4e4">'
+        f'{filas}</div></div>'
+    )
+
+
+def _limpiar_titulo(t: str) -> str:
+    t = str(t or "").strip()
+    return "" if t.startswith("http") else t
+
+
+def construir_html(nuevas: list[dict], resumen: dict, url_web: str,
+                   pendientes: list[dict] | None = None,
+                   descartados: list[dict] | None = None) -> str:
     hoy = _fecha_larga(datetime.now())
+    pendientes = pendientes or []
+    descartados = descartados or []
 
     # Mismo orden que la web: primero precio/rol/agua, la localidad desempata.
     import prioridad
@@ -177,7 +268,7 @@ def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
     sin_datos = [f for f in nuevas if f not in cumplen and f not in reservas and _en_zona(f)]
     descartadas = [f for f in nuevas if not _en_zona(f)]
 
-    if not nuevas:
+    if not nuevas and not pendientes and not descartados:
         cuerpo = (
             '<div style="padding:28px;text-align:center;background:#fafafa;border-radius:8px;'
             'border:1px dashed #ddd">'
@@ -186,6 +277,8 @@ def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
             f'Se revisaron {resumen.get("revisados", 0)} publicaciones en '
             f'{resumen.get("fuentes", 0)} fuentes. Ninguna nueva en las zonas objetivo.</div></div>'
         )
+    elif not nuevas:
+        cuerpo = ""
     else:
         cuerpo = ""
         for titulo, pista, grupo, color in [
@@ -244,12 +337,15 @@ def construir_html(nuevas: list[dict], resumen: dict, url_web: str) -> str:
     <div style="color:#fff;font-size:24px;font-weight:700;margin-top:6px">Informe del {hoy}</div>
     <div style="color:#a8c4b4;font-size:14px;margin-top:8px">
       {len(nuevas)} aviso{'s' if len(nuevas) != 1 else ''} nuevo{'s' if len(nuevas) != 1 else ''}
+      {f'&middot; {len(pendientes)} por leer' if pendientes else ''}
       &middot; {resumen.get('revisados', 0)} publicaciones revisadas
       &middot; Cordillera de Nuble e Isla de Chiloe
     </div>
   </div>
 
   {cuerpo}
+  {_bloque_pendientes(pendientes)}
+  {_bloque_descartados(descartados)}
   {avisos_errores}
   {nota_uf}
 
