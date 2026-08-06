@@ -3012,6 +3012,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-06T14:16:11",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados validos. Es probable que el sitio haya cambiado sus URLs o su HTML."
+   ],
+   "uf_valor": 40844.79,
+   "uf_estimada": false,
+   "duracion_s": 42.9
+  },
+  {
    "fecha": "2026-08-05T14:13:20",
    "revisados": 401,
    "nuevos": 0,
@@ -3084,5 +3098,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-05T14:14:23"
+ "actualizado": "2026-08-06T14:16:54"
 }
