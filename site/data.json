@@ -318,6 +318,70 @@
    }
   },
   {
+   "ubicacion_comuna": "Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "dato faltante - pedir al vendedor",
+   "precio_clp": 9990000,
+   "precio_texto": "$9,990,000 CLP",
+   "forma_pago": "Ofrece precio al contado y tambien credito directo; hay que pedir el precio de contado por escrito",
+   "cumple_contado": true,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "Tue, 4 Aug 2026 19:39:49 -0400",
+   "fuente": "Instagram (enviado por correo)",
+   "url": "https://www.instagram.com/p/DbmL9T_s67U/?igsh=dGVmYmhrczV1ZnUz",
+   "titulo": "Coipomo, Chiloe - parcelas desde $9.990.000 con rol propio",
+   "id": "f4004e54e3be5353",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 64,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 40,
+     "nivel": "ok",
+     "explicacion": "$9.990.000 esta dentro del objetivo de $10.000.000"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El aviso no identifica la comuna con precision. Sin comuna exacta no se puede confirmar que caiga dentro de las comunas objetivo."
+   ],
+   "datos_faltantes": [
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Superficie exacta de la parcela",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta dentro del objetivo de $10.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 17% bajo la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 23 aviso(s) con precio.",
+   "primera_vez": "2026-08-07T13:09:02",
+   "visto_ultima_vez": "2026-08-07T13:09:02",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Dalcahue, Ancud",
    "zona": "Isla de Chiloe",
    "superficie": "5.000 m2",
@@ -1118,6 +1182,65 @@
    "veces_visto": 1
   },
   {
+   "ubicacion_comuna": "Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "30 hectareas",
+   "precio_clp": 9990000,
+   "precio_texto": "$9,990,000 CLP",
+   "forma_pago": "Ofrece precio al contado y tambien credito directo; hay que pedir el precio de contado por escrito",
+   "cumple_contado": true,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Derecho de agua constituido o conexion a red, segun el aviso",
+   "agua_ok": true,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "Tue, 4 Aug 2026 22:24:26 -0400",
+   "fuente": "Instagram (enviado por correo)",
+   "url": "https://www.instagram.com/p/DbGRJeYsD_p/?igsh=ZHh2OTBoMjJ3bXE0",
+   "titulo": "Choroihue - Parcelas agricolas en Ancud, Chiloe",
+   "id": "62794291038b3285",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 45,
+    "cumple_tres": false,
+    "respondidos": 1,
+    "precio": {
+     "puntos": 40,
+     "nivel": "ok",
+     "explicacion": "$9.990.000 esta dentro del objetivo de $10.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "El aviso no aclara la factibilidad de agua"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso solo responde el precio; el resto hay que preguntarlo. El precio esta dentro del objetivo de $10.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 17% bajo la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 23 aviso(s) con precio.",
+   "primera_vez": "2026-08-07T13:09:02",
+   "visto_ultima_vez": "2026-08-07T13:09:02",
+   "veces_visto": 1
+  },
+  {
    "superficie": "5.000 m2",
    "precio_clp": 6900000,
    "precio_texto": "Desde $6.900.000 pagando al contado",
@@ -1245,6 +1368,134 @@
      "explicacion": "Localidad dentro de la zona, sin referencia de conectividad"
     }
    }
+  },
+  {
+   "ubicacion_comuna": "Tarahuin, Chonchi",
+   "zona": "Isla de Chiloe",
+   "superficie": "dato faltante - pedir al vendedor",
+   "precio_clp": null,
+   "precio_texto": "el aviso no publica precio de forma legible",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "Tue, 4 Aug 2026 20:18:05 -0400",
+   "fuente": "Instagram (enviado por correo)",
+   "url": "https://www.instagram.com/p/DaEL8QeM_gb/?igsh=eDRhdDhvMjNnMWJk",
+   "titulo": "Aires de Tarahuin, Chonchi - primeras 10 unidades",
+   "id": "d2e9963582edae14",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 37,
+    "cumple_tres": false,
+    "respondidos": 1,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 25 min de Castro, con servicios basicos"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Superficie exacta de la parcela",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso solo responde el agua; el resto hay que preguntarlo.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 23 aviso(s) con precio.",
+   "primera_vez": "2026-08-07T13:09:02",
+   "visto_ultima_vez": "2026-08-07T13:09:02",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Azul Canelo - parcelas en Pureo, Queilen, Chiloe",
+   "zona": "Isla de Chiloe",
+   "superficie": "dato faltante - pedir al vendedor",
+   "precio_clp": null,
+   "precio_texto": "el aviso no publica precio de forma legible",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "Tue, 4 Aug 2026 20:28:10 -0400",
+   "fuente": "Instagram (enviado por correo)",
+   "url": "https://www.instagram.com/p/Da5py7iMBcS/?igsh=MWRkNnF0OWs3b3JpMw==",
+   "titulo": "Azul Canelo - parcelas en Pureo, Queilen, Chiloe",
+   "id": "2949f95f97b46979",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 37,
+    "cumple_tres": false,
+    "respondidos": 1,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 0,
+     "explicacion": "Localidad dentro de la zona, sin referencia de conectividad"
+    }
+   },
+   "riesgos": [
+    "El aviso no identifica la comuna con precision. Sin comuna exacta no se puede confirmar que caiga dentro de las comunas objetivo."
+   ],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Superficie exacta de la parcela",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso solo responde el agua; el resto hay que preguntarlo.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 23 aviso(s) con precio.",
+   "primera_vez": "2026-08-07T13:09:02",
+   "visto_ultima_vez": "2026-08-07T13:09:02",
+   "veces_visto": 1
   },
   {
    "ubicacion_comuna": "Chonchi",
@@ -3012,6 +3263,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-07T13:08:22",
+   "revisados": 16,
+   "nuevos": 4,
+   "evaluados": 4,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando."
+   ],
+   "uf_valor": 40844.79,
+   "uf_estimada": false,
+   "duracion_s": 40.5
+  },
+  {
    "fecha": "2026-08-06T14:16:11",
    "revisados": 0,
    "nuevos": 0,
@@ -3098,5 +3363,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-06T14:16:54"
+ "actualizado": "2026-08-07T13:09:02"
 }
