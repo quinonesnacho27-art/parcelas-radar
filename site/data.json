@@ -3263,6 +3263,22 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-12T13:14:32",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se pudo consultar el valor real de la UF (mindicador.cl).",
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40500.0,
+   "uf_estimada": true,
+   "duracion_s": 34.6
+  },
+  {
    "fecha": "2026-08-11T13:10:34",
    "revisados": 0,
    "nuevos": 0,
@@ -3424,5 +3440,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-11T13:11:19"
+ "actualizado": "2026-08-12T13:15:07"
 }
