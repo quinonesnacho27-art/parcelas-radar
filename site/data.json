@@ -1762,6 +1762,69 @@
    "agua_ok": null,
    "luz": "dato faltante - pedir al vendedor",
    "luz_ok": null,
+   "fecha_publicacion": "2026-08-13",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-2145454181-vendo-maravillosa-casa-en-parcela-camino-a-coihueco-_JM",
+   "titulo": "Vendo Maravillosa Casa En Parcela, Camino A Coihueco",
+   "id": "3abb503454faa0cd",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "Cerca del embalse, buena conectividad con Chillan"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Cordillera de Nuble: $12.990.000 sobre 1 aviso(s) con precio.",
+   "primera_vez": "2026-08-13T13:17:09",
+   "visto_ultima_vez": "2026-08-13T13:17:09",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Coihueco",
+   "zona": "Cordillera de Nuble",
+   "superficie": "197,92 m2",
+   "precio_clp": null,
+   "precio_texto": "$ 7.475",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
    "fecha_publicacion": "2026-08-04",
    "fuente": "Portalinmobiliario",
    "url": "https://portalinmobiliario.com/MLC-3941867888-vendo-maravillosa-casa-en-parcela-camino-a-coihueco-_JM",
@@ -1934,6 +1997,70 @@
      "explicacion": "Costa oriental, mas aislada y con menos servicios"
     }
    }
+  },
+  {
+   "ubicacion_comuna": "Chonchi, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "0 hectareas",
+   "precio_clp": 15000000,
+   "precio_texto": "$ 15.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-13",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1933990079-oportunidad-de-inversion-ancud-chiloe-75290-_JM",
+   "titulo": "Oportunidad De Inversion Ancud Chiloé (75290)",
+   "id": "2d6150e6a5209ea4",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$15.000.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El aviso usa lenguaje de urgencia ('ultimas unidades', 'cupos limitados', 'liquidacion'). Es tecnica de venta estandar en este rubro: no apures la decision por eso."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 25% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.000.000 sobre 25 aviso(s) con precio.",
+   "primera_vez": "2026-08-13T13:17:09",
+   "visto_ultima_vez": "2026-08-13T13:17:09",
+   "veces_visto": 1
   },
   {
    "ubicacion_comuna": "Ancud",
@@ -3263,6 +3390,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-13T13:16:27",
+   "revisados": 409,
+   "nuevos": 2,
+   "evaluados": 2,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40850.06,
+   "uf_estimada": false,
+   "duracion_s": 41.3
+  },
+  {
    "fecha": "2026-08-12T13:14:32",
    "revisados": 0,
    "nuevos": 0,
@@ -3440,5 +3581,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-12T13:15:07"
+ "actualizado": "2026-08-13T13:17:09"
 }
