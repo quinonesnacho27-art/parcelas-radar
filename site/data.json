@@ -1999,6 +1999,70 @@
    }
   },
   {
+   "ubicacion_comuna": "Quemchi, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 14900000,
+   "precio_texto": "$ 14.900.000",
+   "forma_pago": "El aviso solo promociona credito o financiamiento directo; no publica precio al contado",
+   "cumple_contado": false,
+   "estado_rol": "Menciona aprobacion SAG pero no dice nada del rol - falta verificarlo en el SII",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-16",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-1934008671-nuevo-proyecto-en-la-magica-isla-de-chiloe-sin-comision-_JM",
+   "titulo": "Nuevo Proyecto En La Mágica Isla De Chiloe. Sin Comision",
+   "id": "49f54783d965b9a9",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$14.900.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "El aviso no aclara el estado del rol"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El aviso promociona credito o financiamiento directo, no venta al contado. El criterio del proyecto es contado: hay que negociar el precio de contado, que deberia ser bastante menor al publicado."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 22% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 26 aviso(s) con precio.",
+   "primera_vez": "2026-08-16T12:42:58",
+   "visto_ultima_vez": "2026-08-16T12:42:58",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Chonchi, Ancud",
    "zona": "Isla de Chiloe",
    "superficie": "0 hectareas",
@@ -3390,6 +3454,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-16T12:42:19",
+   "revisados": 409,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40854.01,
+   "uf_estimada": false,
+   "duracion_s": 39.1
+  },
+  {
    "fecha": "2026-08-15T12:40:47",
    "revisados": 407,
    "nuevos": 0,
@@ -3609,5 +3687,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-15T12:41:23"
+ "actualizado": "2026-08-16T12:42:58"
 }
