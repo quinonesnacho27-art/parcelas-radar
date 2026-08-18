@@ -997,6 +997,66 @@
    }
   },
   {
+   "ubicacion_comuna": "Ancud, Pinto",
+   "zona": "Isla de Chiloe",
+   "superficie": "5200 m2",
+   "precio_clp": 13900000,
+   "precio_texto": "$ 13.900.000",
+   "forma_pago": "Ofrece precio al contado y tambien credito directo; hay que pedir el precio de contado por escrito",
+   "cumple_contado": true,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Agua de pozo declarada por el vendedor",
+   "agua_ok": true,
+   "luz": "Solo energia solar; no menciona conexion a la red electrica",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-18",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4363800392-parcela-en-ancud-5200-m2-_JM",
+   "titulo": "Parcela En Ancud 5200 M2",
+   "id": "a7a5a2da76bed68d",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 49,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 20,
+     "nivel": "limite",
+     "explicacion": "$13.900.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 26,
+     "nivel": "obra",
+     "explicacion": "Pozo declarado por el vendedor"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el rol. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 14% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 27 aviso(s) con precio.",
+   "primera_vez": "2026-08-18T12:51:26",
+   "visto_ultima_vez": "2026-08-18T12:51:26",
+   "veces_visto": 1
+  },
+  {
    "superficie": "dato faltante",
    "precio_clp": null,
    "precio_texto": "no publica precio",
@@ -3454,6 +3514,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-18T12:50:46",
+   "revisados": 406,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40856.64,
+   "uf_estimada": false,
+   "duracion_s": 39.6
+  },
+  {
    "fecha": "2026-08-17T12:48:13",
    "revisados": 410,
    "nuevos": 0,
@@ -3701,5 +3775,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-17T12:49:00"
+ "actualizado": "2026-08-18T12:51:26"
 }
