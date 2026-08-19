@@ -3514,6 +3514,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-19T12:51:20",
+   "revisados": 407,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40857.96,
+   "uf_estimada": false,
+   "duracion_s": 40.9
+  },
+  {
    "fecha": "2026-08-18T12:50:46",
    "revisados": 406,
    "nuevos": 1,
@@ -3775,5 +3789,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-18T12:51:26"
+ "actualizado": "2026-08-19T12:52:01"
 }
