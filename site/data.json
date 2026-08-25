@@ -63,6 +63,131 @@
    "veces_visto": 1
   },
   {
+   "ubicacion_comuna": "Quellon",
+   "zona": "Isla de Chiloe",
+   "superficie": "5000 m2",
+   "precio_clp": 10900000,
+   "precio_texto": "$ 10.900.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso, con aprobacion SAG declarada - falta verificarlo en el SII",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-25",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-2189294537-parcela-con-bosque-nativo-_JM",
+   "titulo": "Parcela Con Bosque Nativo",
+   "id": "f12b918d0ee52760",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 88,
+    "cumple_tres": true,
+    "respondidos": 3,
+    "precio": {
+     "puntos": 36,
+     "nivel": "limite",
+     "explicacion": "$10.900.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "Puerto y terminal sur de la ruta 5"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde los tres criterios duros, que es poco frecuente en este rubro. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. Esta un 16% bajo la mediana de Isla de Chiloe.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 4,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $13.000.000 sobre 30 aviso(s) con precio.",
+   "primera_vez": "2026-08-25T12:51:49",
+   "visto_ultima_vez": "2026-08-25T12:51:49",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 12000000,
+   "precio_texto": "$ 12.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-25",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-3964949152-parcela-en-venta-en-ancud-39775-_JM",
+   "titulo": "Parcela En Venta En Ancud (39775)",
+   "id": "1ab5b675c1137309",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 82,
+    "cumple_tres": true,
+    "respondidos": 3,
+    "precio": {
+     "puntos": 30,
+     "nivel": "limite",
+     "explicacion": "$12.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El agua se menciona como vertiente o 'factibilidad hidrica': eso no es un derecho de aprovechamiento constituido en la DGA. Sin ese derecho inscrito el suministro no esta garantizado juridicamente y el costo de un pozo queda en tu cancha."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde los tres criterios duros, que es poco frecuente en este rubro. El precio esta sobre el objetivo pero bajo el techo de $14.000.000.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 4,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $13.000.000 sobre 30 aviso(s) con precio.",
+   "primera_vez": "2026-08-25T12:51:49",
+   "visto_ultima_vez": "2026-08-25T12:51:49",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Dalcahue",
    "zona": "Isla de Chiloe",
    "superficie": "5.000 m2",
@@ -3635,6 +3760,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-25T12:51:07",
+   "revisados": 403,
+   "nuevos": 2,
+   "evaluados": 2,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40865.87,
+   "uf_estimada": false,
+   "duracion_s": 41.9
+  },
+  {
    "fecha": "2026-08-24T12:54:05",
    "revisados": 406,
    "nuevos": 0,
@@ -3980,5 +4119,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-24T12:54:45"
+ "actualizado": "2026-08-25T12:51:49"
 }
