@@ -1932,6 +1932,68 @@
   {
    "ubicacion_comuna": "Chonchi, Castro",
    "zona": "Isla de Chiloe",
+   "superficie": "64.000 m2",
+   "precio_clp": null,
+   "precio_texto": "$ 550.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-08-29",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4421504586-campo-en-chiloe-ideal-proyecto-condominio-sin-comision-_JM",
+   "titulo": "Campo En Chiloé: Ideal Proyecto Condominio, Sin Comisión",
+   "id": "ea6211e8e963e713",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, el mayor centro de servicios de la isla"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 33 aviso(s) con precio.",
+   "primera_vez": "2026-08-29T16:24:02",
+   "visto_ultima_vez": "2026-08-29T16:24:02",
+   "veces_visto": 1
+  },
+  {
+   "ubicacion_comuna": "Chonchi, Castro",
+   "zona": "Isla de Chiloe",
    "superficie": "7,35 hectareas",
    "precio_clp": null,
    "precio_texto": "$ 930.000.000",
@@ -3824,6 +3886,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-29T16:23:24",
+   "revisados": 397,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40871.14,
+   "uf_estimada": false,
+   "duracion_s": 37.9
+  },
+  {
    "fecha": "2026-08-28T21:50:42",
    "revisados": 402,
    "nuevos": 0,
@@ -4225,5 +4301,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-28T21:51:21"
+ "actualizado": "2026-08-29T16:24:02"
 }
