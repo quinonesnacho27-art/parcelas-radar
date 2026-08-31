@@ -1930,6 +1930,71 @@
    "veces_visto": 1
   },
   {
+   "ubicacion_comuna": "Pinto",
+   "zona": "Cordillera de Nuble",
+   "superficie": "3 hectareas",
+   "precio_clp": null,
+   "precio_texto": "$ 790.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-08-31",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4434836718-casa-parcela-preciosa-camino-a-las-termas-y-pinto-nuble-_JM",
+   "titulo": "Casa Parcela Preciosa Camino A Las Termas Y Pinto, Ñuble",
+   "id": "d0424cf8524a971a",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 9,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 4,
+     "nivel": "falta",
+     "explicacion": "El aviso no publica precio"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Comuna que conecta Chillan con el sector cordillerano"
+    }
+   },
+   "riesgos": [
+    "El aviso no identifica la comuna con precision. Sin comuna exacta no se puede confirmar que caiga dentro de las comunas objetivo."
+   ],
+   "datos_faltantes": [
+    "PRECIO: es el dato que decide todo y el aviso no lo publica",
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Cordillera de Nuble: $12.990.000 sobre 1 aviso(s) con precio.",
+   "primera_vez": "2026-08-31T18:56:08",
+   "visto_ultima_vez": "2026-08-31T18:56:08",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Chonchi, Castro",
    "zona": "Isla de Chiloe",
    "superficie": "64.000 m2",
@@ -3886,6 +3951,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-08-31T18:55:26",
+   "revisados": 399,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40873.77,
+   "uf_estimada": false,
+   "duracion_s": 41.8
+  },
+  {
    "fecha": "2026-08-30T16:16:49",
    "revisados": 400,
    "nuevos": 0,
@@ -4315,5 +4394,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-08-30T16:17:28"
+ "actualizado": "2026-08-31T18:56:08"
 }
