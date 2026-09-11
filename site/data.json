@@ -4012,6 +4012,21 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-09-11T16:04:55",
+   "revisados": 393,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se pudo consultar el valor real de la UF (mindicador.cl).",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40500.0,
+   "uf_estimada": true,
+   "duracion_s": 71.6
+  },
+  {
    "fecha": "2026-09-10T16:01:19",
    "revisados": 401,
    "nuevos": 0,
@@ -4597,5 +4612,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-09-10T16:02:23"
+ "actualizado": "2026-09-11T16:06:07"
 }
