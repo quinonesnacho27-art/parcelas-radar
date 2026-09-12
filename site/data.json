@@ -1180,6 +1180,67 @@
    }
   },
   {
+   "ubicacion_comuna": "Dalcahue",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 12000000,
+   "precio_texto": "$ 12.000.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "Rol propio declarado en el aviso - falta verificarlo en el SII",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-09-12",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4472207542-parcela-en-dalcahue-12-millones-oportunidad-2-min-5-sur-_JM",
+   "titulo": "Parcela En Dalcahue 12 Millones Oportunidad 2 Min 5 Sur",
+   "id": "0b989b6022c3d158",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 54,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 30,
+     "nivel": "limite",
+     "explicacion": "$12.000.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 22,
+     "nivel": "declarado",
+     "explicacion": "Rol propio declarado por el vendedor, falta verificarlo en el SII"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 2,
+     "explicacion": "A 20 min de Castro, con servicios y conexion a las islas"
+    }
+   },
+   "riesgos": [],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el agua. El precio esta sobre el objetivo pero bajo el techo de $14.000.000. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 2,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.990.000 sobre 34 aviso(s) con precio.",
+   "primera_vez": "2026-09-12T15:13:22",
+   "visto_ultima_vez": "2026-09-12T15:13:22",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Chonchi, Quellon",
    "zona": "Isla de Chiloe",
    "superficie": "5.000 m2",
@@ -4012,6 +4073,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-09-12T15:12:31",
+   "revisados": 399,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40910.1,
+   "uf_estimada": false,
+   "duracion_s": 50.8
+  },
+  {
    "fecha": "2026-09-11T16:04:55",
    "revisados": 393,
    "nuevos": 0,
@@ -4612,5 +4687,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-09-11T16:06:07"
+ "actualizado": "2026-09-12T15:13:22"
 }
