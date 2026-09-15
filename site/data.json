@@ -2807,6 +2807,70 @@
    "veces_visto": 1
   },
   {
+   "ubicacion_comuna": "Dalcahue, Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "20 hectareas",
+   "precio_clp": 16700000,
+   "precio_texto": "$ 16.700.000",
+   "forma_pago": "El aviso solo promociona credito o financiamiento directo; no publica precio al contado",
+   "cumple_contado": false,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "dato faltante - pedir al vendedor",
+   "agua_ok": null,
+   "luz": "dato faltante - pedir al vendedor",
+   "luz_ok": null,
+   "fecha_publicacion": "2026-09-15",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-2238190821-parcela-en-quemchi-chiloe-a-pasos-de-laguna-y-bosque-nativo-_JM",
+   "titulo": "Parcela En Quemchi, Chiloé A Pasos De Laguna Y Bosque Nativo",
+   "id": "a65a9973e76328af",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 5,
+    "cumple_tres": false,
+    "respondidos": 0,
+    "precio": {
+     "puntos": 0,
+     "nivel": "caro",
+     "explicacion": "$16.700.000 supera el techo de $14.000.000"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 2,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: es el criterio excluyente, hay que preguntarlo"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El aviso promociona credito o financiamiento directo, no venta al contado. El criterio del proyecto es contado: hay que negociar el precio de contado, que deberia ser bastante menor al publicado."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Factibilidad electrica: hay poste en el deslinde o hay que costear la extension",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "El aviso no responde ninguno de los tres criterios: no hay nada que evaluar todavia. El precio supera el techo del proyecto. El agua es el criterio excluyente y el aviso no dice nada: sin esa respuesta no avanza. Esta un 37% sobre la mediana de Isla de Chiloe.",
+   "veredicto": "No cumple",
+   "puntaje": 1,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.150.000 sobre 35 aviso(s) con precio.",
+   "primera_vez": "2026-09-15T16:32:07",
+   "visto_ultima_vez": "2026-09-15T16:32:07",
+   "veces_visto": 1
+  },
+  {
    "ubicacion_comuna": "Quellon",
    "zona": "Isla de Chiloe",
    "superficie": "6,000 m2",
@@ -4073,6 +4137,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-09-15T16:31:21",
+   "revisados": 411,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40934.58,
+   "uf_estimada": false,
+   "duracion_s": 46.3
+  },
+  {
    "fecha": "2026-09-14T17:53:26",
    "revisados": 401,
    "nuevos": 0,
@@ -4715,5 +4793,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-09-14T17:54:18"
+ "actualizado": "2026-09-15T16:32:07"
 }
