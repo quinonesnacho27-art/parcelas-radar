@@ -750,6 +750,69 @@
    "veces_visto": 1
   },
   {
+   "ubicacion_comuna": "Ancud",
+   "zona": "Isla de Chiloe",
+   "superficie": "5.000 m2",
+   "precio_clp": 12500000,
+   "precio_texto": "$ 12.500.000",
+   "forma_pago": "dato faltante - pedir al vendedor",
+   "cumple_contado": null,
+   "estado_rol": "dato faltante - pedir al vendedor",
+   "agua": "Menciona vertiente o factibilidad hidrica, pero no un derecho de aprovechamiento constituido en la DGA",
+   "agua_ok": null,
+   "luz": "Factibilidad electrica declarada; factibilidad no es lo mismo que empalme ejecutado",
+   "luz_ok": true,
+   "fecha_publicacion": "2026-09-23",
+   "fuente": "Portalinmobiliario",
+   "url": "https://portalinmobiliario.com/MLC-4505428900-parcela-5000-metros-_JM",
+   "titulo": "Parcela 5.000 Metros",
+   "id": "3a05fcb464b83097",
+   "_error": null,
+   "_motor": "reglas",
+   "prioridad": {
+    "indice": 61,
+    "cumple_tres": false,
+    "respondidos": 2,
+    "precio": {
+     "puntos": 28,
+     "nivel": "limite",
+     "explicacion": "$12.500.000 esta sobre el objetivo pero bajo el techo tolerable"
+    },
+    "rol": {
+     "puntos": 3,
+     "nivel": "falta",
+     "explicacion": "Dato faltante: hay que pedirlo al vendedor"
+    },
+    "agua": {
+     "puntos": 30,
+     "nivel": "firme",
+     "explicacion": "Derecho de agua constituido o conexion a red"
+    },
+    "localidad": {
+     "nivel": 3,
+     "explicacion": "Capital provincial, acceso directo por la ruta 5 y el canal de Chacao"
+    }
+   },
+   "riesgos": [
+    "El agua se menciona como vertiente o 'factibilidad hidrica': eso no es un derecho de aprovechamiento constituido en la DGA. Sin ese derecho inscrito el suministro no esta garantizado juridicamente y el costo de un pozo queda en tu cancha."
+   ],
+   "datos_faltantes": [
+    "Cual es el precio al contado y que descuento hay respecto del credito directo",
+    "Numero de rol de una parcela concreta, para verificarlo en el SII",
+    "Factibilidad de agua: hay pozo construido con prueba de caudal, o derecho de aprovechamiento inscrito en la DGA",
+    "Copia del plano de subdivision aprobado y del certificado del SAG",
+    "Nombre y RUT del vendedor, para el estudio de titulos",
+    "Estado del camino de acceso en invierno y si es publico o servidumbre"
+   ],
+   "justificacion_puntaje": "Responde dos de los tres criterios; lo que falta es el rol. El precio esta sobre el objetivo pero bajo el techo de $14.000.000.",
+   "veredicto": "Cumple con reservas",
+   "puntaje": 3,
+   "comparacion_zona": "Mediana de Isla de Chiloe: $12.990.000 sobre 36 aviso(s) con precio.",
+   "primera_vez": "2026-09-23T16:22:19",
+   "visto_ultima_vez": "2026-09-23T16:22:19",
+   "veces_visto": 1
+  },
+  {
    "superficie": "dato faltante",
    "precio_clp": 10900000,
    "precio_texto": "Desde $10.900.000",
@@ -4137,6 +4200,20 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-09-23T16:21:40",
+   "revisados": 397,
+   "nuevos": 1,
+   "evaluados": 1,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40999.93,
+   "uf_estimada": false,
+   "duracion_s": 39.3
+  },
+  {
    "fecha": "2026-09-22T16:31:58",
    "revisados": 397,
    "nuevos": 0,
@@ -4892,5 +4969,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-09-22T16:32:34"
+ "actualizado": "2026-09-23T16:22:19"
 }
