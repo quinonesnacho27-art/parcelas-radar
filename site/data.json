@@ -4264,6 +4264,21 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-09-29T17:50:02",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 41049.01,
+   "uf_estimada": false,
+   "duracion_s": 34.8
+  },
+  {
    "fecha": "2026-09-28T19:23:42",
    "revisados": 405,
    "nuevos": 0,
@@ -5103,5 +5118,5 @@
    "nota": "Carga completa del WhatsApp de Marcelo Quinones (viernes 31/07 a lunes 03/08)."
   }
  ],
- "actualizado": "2026-09-28T19:24:26"
+ "actualizado": "2026-09-29T17:50:37"
 }
