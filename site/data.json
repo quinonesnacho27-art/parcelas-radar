@@ -4330,6 +4330,21 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-11-03T19:14:18",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 41263.57,
+   "uf_estimada": false,
+   "duracion_s": 51.0
+  },
+  {
    "fecha": "2026-11-02T21:30:06",
    "revisados": 0,
    "nuevos": 0,
@@ -5632,20 +5647,7 @@
    "uf_valor": 40844.79,
    "uf_estimada": false,
    "duracion_s": 42.9
-  },
-  {
-   "fecha": "2026-08-05T14:13:20",
-   "revisados": 401,
-   "nuevos": 0,
-   "evaluados": 0,
-   "fuentes": 3,
-   "errores": [
-    "No se pudo consultar el valor real de la UF (mindicador.cl)."
-   ],
-   "uf_valor": 40500.0,
-   "uf_estimada": true,
-   "duracion_s": 62.8
   }
  ],
- "actualizado": "2026-11-02T21:30:47"
+ "actualizado": "2026-11-03T19:15:08"
 }
