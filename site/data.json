@@ -4330,6 +4330,22 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-11-10T19:26:52",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "No se pudo consultar el valor real de la UF (mindicador.cl).",
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 40500.0,
+   "uf_estimada": true,
+   "duracion_s": 54.0
+  },
+  {
    "fecha": "2026-11-09T22:02:02",
    "revisados": 0,
    "nuevos": 0,
@@ -5633,23 +5649,7 @@
    "uf_valor": 40850.06,
    "uf_estimada": false,
    "duracion_s": 41.3
-  },
-  {
-   "fecha": "2026-08-12T13:14:32",
-   "revisados": 0,
-   "nuevos": 0,
-   "evaluados": 0,
-   "fuentes": 3,
-   "pendientes": 0,
-   "errores": [
-    "No se pudo consultar el valor real de la UF (mindicador.cl).",
-    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
-    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
-   ],
-   "uf_valor": 40500.0,
-   "uf_estimada": true,
-   "duracion_s": 34.6
   }
  ],
- "actualizado": "2026-11-09T22:02:48"
+ "actualizado": "2026-11-10T19:27:46"
 }
