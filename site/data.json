@@ -4330,6 +4330,21 @@
  ],
  "corridas": [
   {
+   "fecha": "2026-11-21T18:50:05",
+   "revisados": 0,
+   "nuevos": 0,
+   "evaluados": 0,
+   "fuentes": 3,
+   "pendientes": 0,
+   "errores": [
+    "Ninguna busqueda de Portalinmobiliario devolvio resultados. Si en el log aparece 'pagina sin titulo', el sitio esta bloqueando al robot y no hay nada que arreglar en los slugs: hay que esperar o cambiar de fuente. Los avisos que llegan por correo no dependen de esto y siguen entrando.",
+    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
+   ],
+   "uf_valor": 41377.93,
+   "uf_estimada": false,
+   "duracion_s": 34.7
+  },
+  {
    "fecha": "2026-11-20T19:43:58",
    "revisados": 0,
    "nuevos": 0,
@@ -5652,21 +5667,7 @@
    "uf_valor": 40864.55,
    "uf_estimada": false,
    "duracion_s": 40.1
-  },
-  {
-   "fecha": "2026-08-23T12:43:05",
-   "revisados": 408,
-   "nuevos": 0,
-   "evaluados": 0,
-   "fuentes": 3,
-   "pendientes": 0,
-   "errores": [
-    "No se encontro ningun correo dirigido a quinonesnacho27+parcelas@gmail.com en los ultimos 3 dias. Se revisaron estos buzones: [Gmail]/Todos, Parcelas, INBOX."
-   ],
-   "uf_valor": 40863.23,
-   "uf_estimada": false,
-   "duracion_s": 40.9
   }
  ],
- "actualizado": "2026-11-20T19:44:54"
+ "actualizado": "2026-11-21T18:50:40"
 }
